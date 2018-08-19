@@ -1,8 +1,3 @@
-import {Logger} from '../models/logger';
+export let Controllers = {};
 
-module.exports.Controller
-
-Controller.UserController = () => {}
-
-
-class ControllerHandler {} 
+Controllers.UserController = require('./user').UserController;
