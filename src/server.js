@@ -18,9 +18,9 @@ export class Server {
         Logger.info('Server created');
 
         let port = Config.Server.HTTPPort;
-        app.use(bodyParser.json());
-        app.use(bodyParser.urlencoded({ extended: true }));
         try {
+            app.use(bodyParser.json());
+            app.use(bodyParser.urlencoded({ extended: true }));
             app.listen(port);
         } catch (e) {
             Logger.panic(`Could not open a connection on port ${port}, maybe the port is populated or permissions are not met`);
