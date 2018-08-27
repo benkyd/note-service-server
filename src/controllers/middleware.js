@@ -5,7 +5,7 @@ import {Logger} from '../models/logger';
 export class MiddleWare {
     static analytics(req, res, next) {
         // TODO: Send data such as IP to an anyaltitics model
-        Logger.info(`${req.method} request to ${req.url}`)
+        Logger.middleware(`${req.method} request to ${req.url}`)
         next();
     }
 

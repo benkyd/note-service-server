@@ -18,6 +18,13 @@ export class Logger {
             + colours.magenta('SQLITE') + '] ' + message);
     }
 
+    static middleware(message) {
+        if (LogLevel > 0) return; 
+        let d = new Date();
+        console.log('[' + d.toLocaleString() + '] [' 
+            + colours.blue('HTTP-MIDDLEWARE') + '] ' + message);
+    }
+
     static debug(message) {
         if (LogLevel > 1) return; 
         let d = new Date();

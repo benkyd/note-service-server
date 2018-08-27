@@ -10,7 +10,7 @@ let auth;
 let session;
 
 export class BaseDatabase {
-    static get Connection() {return connection}
+    static get Connection() {return connection;}
 
     static async init() {
         Logger.info('Connecting to SQLite Database');
