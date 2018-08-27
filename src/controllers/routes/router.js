@@ -9,12 +9,13 @@ let app;
 export class Router {
     static async initEndpoints() {
         Logger.info('Setting up API HTTP endpoints');
-        
+
         app = Server.App;
+
         app.get('/', [MiddleWare.analytics, Router.frontPage]);
         
-        app.get('/user/:id', (req, res) => [MiddleWare.analytics]);
-        app.delete('/user/:id', (req, res) => {});
+        app.get('/user/:id', [MiddleWare.analytics]);
+        app.delete('/user/:id', [MiddleWare.analytics]);
         app.post('/user', [MiddleWare.analytics, Controllers.UserController.newUser]);
         
         app.use([MiddleWare.analytics, StatusCodes.pageNotFound]);

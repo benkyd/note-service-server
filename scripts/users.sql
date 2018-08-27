@@ -13,5 +13,13 @@ CREATE TABLE `notes`.`Users` (
     `admin` tinyint(4) DEFAULT NULL 
 )
 
-ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ALTER TABLE `notes`.`Users` ADD PRIMARY KEY (`id`);
+
+
+CREATE TABLE `notes`.`session` (
+    `session_id` VARCHAR(32) NOT NULL,
+    `session_data` TEXT NOT NULL,
+    `t_created` bigint(20) NOT NULL, 
+    `t_updated`bigint(20) NOT NULL, 
+    PRIMARY KEY  (`session_id`)
+) 
