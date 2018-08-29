@@ -13,7 +13,9 @@ async function init() {
     await Database.testConnection();
     await Server.start();
     await Router.initEndpoints();
+
     
+
     // Logger.database('Database Log');
     // Logger.middleware('GET request to /');
     // Logger.debug('Debug mode enabled');

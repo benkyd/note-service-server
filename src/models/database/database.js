@@ -12,6 +12,7 @@ export class Database extends BaseDatabase {
             connection
                 .query(query)
                 .then(result => {
+                    Logger.database(JSON.stringify(res, null, 4));
                     res = result[0][0].result;
                     resolve();
                 })

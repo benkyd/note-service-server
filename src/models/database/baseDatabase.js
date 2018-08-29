@@ -5,12 +5,15 @@ import {Config} from '../../config/config';
 
 let connection;
 
-let user;
-let auth;
-let session;
+let User;
+let Auth;
+let Session;
 
 export class BaseDatabase {
     static get Connection() {return connection;}
+    static get User() {return User}
+    static get Auth() {return Auth}
+    static get Session() {return Session}
 
     static async init() {
         Logger.info('Connecting to SQLite Database');
@@ -23,7 +26,7 @@ export class BaseDatabase {
             storage: 'src/models/database/sqlite/database.sqlite',
         });
 
-        user = connection.define('user', {
+        User = connection.define('user', {
             id: {
                 type: Sequelize.BIGINT,
                 primaryKey: true,
@@ -35,11 +38,13 @@ export class BaseDatabase {
             ip: Sequelize.TEXT,
             lastupdated: Sequelize.TEXT,
             verified: Sequelize.BOOLEAN,
-            authcode: Sequelize.STRING,
+            authcode: Sequelize.TEXT,
             timeauthed: Sequelize.TEXT
+        }, {
+            tableName: `user` 
         });
         
-        auth = connection.define('auth', {
+        Auth = connection.define('auth', {
             id: {
                 type: Sequelize.BIGINT,
                 primaryKey: true,
@@ -49,9 +54,11 @@ export class BaseDatabase {
             validator: Sequelize.TEXT,
             uid: Sequelize.BIGINT,
             expires: Sequelize.TEXT
+        }, {
+            tableName: `auth` 
         });
 
-        session = connection.define('session', {
+        Session = connection.define('session', {
             sessionid: {
                 type: Sequelize.BIGINT,
                 primaryKey: true,
@@ -60,9 +67,12 @@ export class BaseDatabase {
             sessiondata: Sequelize.TEXT,
             timecreated: Sequelize.TEXT,
             timeupdated: Sequelize.TEXT
+        }, {
+            tableName: `session` 
         });
+
         try {
-            await connection.sync();
+            await connection.sync({force: false});
         } catch (e) {
             Logger.panic('Failed to connect to SQLite Database, error:', e)
         }
