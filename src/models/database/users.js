@@ -31,6 +31,10 @@ export class UserTools extends BaseDatabase {
         }
     }
 
+    static async deleteUser(id) {
+
+    }
+
     static async getUserByID(id) {
         let User = BaseDatabase.User;
         
@@ -42,5 +46,17 @@ export class UserTools extends BaseDatabase {
             Logger.error(`An error occured while querying for user id ${id}: ${e}`);
             return -1;
         }
+    }
+
+    static async getID(term, searchTerm) {
+
+    }
+
+    static async updateIP() {
+
+    } 
+
+    static async authUser() {
+        
     }
 }
