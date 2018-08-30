@@ -24,6 +24,7 @@ export class UserTools extends BaseDatabase {
                 authcode: authcode,
                 timeauthed: '-1'
             });
+            return user;
         } catch (e) {
             Logger.error(`An error occured while inserting user ${username}, id ${id} into users table: ${JSON.stringify(e.errors)}`);
             return -1;
@@ -31,6 +32,15 @@ export class UserTools extends BaseDatabase {
     }
 
     static async getUserByID(id) {
-
+        let User = BaseDatabase.User;
+        
+        try {
+            let user = await User.findOne({where: {id: id}});
+            if (user == null) return -1;
+            return user;
+        } catch (e) {
+            Logger.error(`An error occured while querying for user id ${id}: ${e}`);
+            return -1;
+        }
     }
 }

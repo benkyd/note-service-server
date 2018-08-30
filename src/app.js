@@ -4,6 +4,8 @@ import {Database} from './models/database/database';
 import {Server} from './server';
 import {Router} from './controllers/routes/router';
 
+import {User} from './models/user/user';
+
 init();
 async function init() {
     Logger.SetLevel(Logger.VERBOSE_LOGS);
@@ -15,6 +17,10 @@ async function init() {
     await Router.initEndpoints();
 
     
+    
+    // Logger.debug(JSON.stringify(await Database.users.getUserByID(12341356), null, 4));
+    // Logger.debug(JSON.stringify(await Database.users.listAll(), null, 4));
+    // await new User(1234135, 'plane000', 'adifl', 'playsplane@gmail.com', '127.0.0.1', new Date().getTime(), false, 'SGASGD', -1).insert();
 
     // Logger.database('Database Log');
     // Logger.middleware('GET request to /');
@@ -24,5 +30,3 @@ async function init() {
     // Logger.error('An error has occured');
     // Logger.panic('A fatal error has occured, exiting');
 }
-
- 
