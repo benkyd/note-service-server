@@ -9,7 +9,7 @@ export class UserTools extends BaseDatabase {
         let User = BaseDatabase.User;
         return User.findAll();
     }
-
+ 
     static async newUser(id, username, password, email, ip, authcode) {
         let User = BaseDatabase.User;
         try {
@@ -28,5 +28,9 @@ export class UserTools extends BaseDatabase {
             Logger.error(`An error occured while inserting user ${username}, id ${id} into users table: ${JSON.stringify(e.errors)}`);
             return -1;
         }
+    }
+
+    static async getUserByID(id) {
+
     }
 }

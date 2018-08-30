@@ -9,7 +9,7 @@ let User;
 let Auth;
 let Session;
 
-export class BaseDatabase {
+export class BaseDatabase { 
     static get Connection() {return connection;}
     static get User() {return User}
     static get Auth() {return Auth}
