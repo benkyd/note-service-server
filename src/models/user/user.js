@@ -3,13 +3,13 @@ import {BaseUser} from './baseUser';
 import {Database} from '../database/database';
 
 export class User extends BaseUser {
-    constructor(id, username, password, email, ip, lastupdated, verified, authcode, timeauthed) {
-        super(id, username, password, email, ip, lastupdated, verified, authcode, timeauthed);
+    constructor(id, username, password, email, ip, authcode) {
+        super(id, username, password, email, ip, authcode);
     }
     
     async insert() {
         this._instance = await Database.users.newUser(this.id, this.username, this.password, this.email, this.ip, this.authcode)
-        if (this._instance == -1) throw new Error('Failed to insert');
+        if (this._instance == -1) return -1;
         Logger.debug(`New user [${this.id}] ${this.username}`);
     }
 

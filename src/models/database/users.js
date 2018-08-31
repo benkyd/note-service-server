@@ -2,7 +2,6 @@ import Sequelize from 'sequelize';
 
 import {BaseDatabase} from './baseDatabase';
 import {Logger} from '../logger';
-import {Config} from '../../config/config';
 
 export class UserTools extends BaseDatabase {
     static async listAll() {
@@ -36,7 +35,7 @@ export class UserTools extends BaseDatabase {
         let User = BaseDatabase.User;
 
         try {
-            let user = await User.destroy({where: {id: id}});
+            await User.destroy({where: {id: id}});
             return 1;
         } catch (e) {
             Logger.error(`An error occured while deleting user id ${id}: ${e}`);
@@ -64,26 +63,26 @@ export class UserTools extends BaseDatabase {
             if (column == 'id') {
                 return search;
             } else if (column == 'username') {
-                let user = await User.findOne({where: {username: serch}});
+                let user = await User.findOne({where: {username: search}});
                 if (user == null) return -1;
                 return user;
             } else if (column == 'password') {
-                let user = await User.findOne({where: {password: serch}});
+                let user = await User.findOne({where: {password: search}});
                 if (user == null) return -1;
                 return user;
             } else if (column == 'ip') {
-                let user = await User.findOne({where: {ip: serch}});
+                let user = await User.findOne({where: {ip: search}});
                 if (user == null) return -1;
                 return user;
             } else if (column == 'authcode') {
-                let user = await User.findOne({where: {authcode: serch}});
+                let user = await User.findOne({where: {authcode: search}});
                 if (user == null) return -1;
                 return user;
             } else {
                 return -1
             }
         } catch (e) {
-            Logger.error(`An error occured while querying the id of a user where ${term} is ${searchTerm}: ${e}`);
+            Logger.error(`An error occured while querying the id of a user where ${column} is ${search}: ${e}`);
             return -1;
         }
     }
@@ -92,7 +91,7 @@ export class UserTools extends BaseDatabase {
         let User = BaseDatabase.User;
 
         try {
-            let user = await User.update({ip: newIP}, {where: {id: id}});
+            await User.update({ip: newIP}, {where: {id: id}});
             return 1;
         } catch (e) {
             Logger.error(`An error occured while updating user id ${id}'s ip: ${e}`);

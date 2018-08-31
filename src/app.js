@@ -15,8 +15,8 @@ async function init() {
     await Database.testConnection();
     await Server.start();
     await Router.initEndpoints();
-
     
+    Logger.ready();
     
     // Logger.debug(JSON.stringify(await Database.users.getUserByID(12341356), null, 4));
     // Logger.debug(JSON.stringify(await Database.users.listAll(), null, 4));

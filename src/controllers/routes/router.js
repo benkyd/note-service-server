@@ -18,7 +18,7 @@ export class Router {
         app.delete('/user/:id', [MiddleWare.analytics]);
         app.post('/user', [MiddleWare.analytics, Controllers.UserController.newUser]);
         
-        app.use([MiddleWare.analytics, StatusCodes.pageNotFound]);
+        app.use([StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');
     }
 

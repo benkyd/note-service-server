@@ -32,6 +32,12 @@ export class Logger {
             + colours.cyan('DEBUG') + '] ' + message);
     }
 
+    static ready() {
+        let d = new Date();
+        console.log('[' + d.toLocaleString() + '] ['
+            + colours.rainbow('READY') + ']');
+    }
+
     static info(message) {
         if (LogLevel > 2) return; 
         let d = new Date();
