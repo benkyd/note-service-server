@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 import {Logger} from '../models/logger';
 import {ControllerHandler} from './controllerHandler';
 import {API} from '../models/api/api';
