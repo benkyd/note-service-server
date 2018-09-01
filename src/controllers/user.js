@@ -24,8 +24,8 @@ export class UserController extends ControllerHandler {
         if (!UserController.isPasswordValid(password)) errors.addError(422, 'Unprocessaable entity', 'Invalid password has spaces');
         if (password.length < 7) errors.addError(422, 'Unprocessaable entity', 'Invalid password less than 7 charicters');
 
-        if (await Database.users.getID('username', username) == -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
-        if (await Database.users.getID('email', email) == -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
+        if (await Database.users.getID('username', username) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
+        if (await Database.users.getID('email', email) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
 
         let id = new Date().getTime();
         let token = "1234";

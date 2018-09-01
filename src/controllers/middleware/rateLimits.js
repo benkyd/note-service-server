@@ -10,7 +10,7 @@ export class RateLimits extends MiddleWare{
         let ip = req.connection.remoteAddress;
 
         if (!buckets[ip]) {
-            console.log(`New bucket`)
+            Logger.debug(`New rate limiting bucket`);
             RateLimits.newBucket(ip);
             next();
             return;

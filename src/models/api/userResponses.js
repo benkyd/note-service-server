@@ -3,7 +3,6 @@ import {API} from './API';
 export class User extends API {
     constructor(res, id, username, email, updated, token) {
         super();
-        this.res = res;
         this.response = {
             status: {
                 error: false,
@@ -27,9 +26,6 @@ export class User extends API {
     }
 
     endpoint() {
-        this.res
-            .setHeader('Content-type', 'application/json')
-            .status(200)
-            .end(JSON.stringify(this.response, false, 4));
+        this.res.status(200).end(JSON.stringify(this.response, false, 4));
     }
 }

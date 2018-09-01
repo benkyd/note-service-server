@@ -66,6 +66,10 @@ export class UserTools extends BaseDatabase {
                 let user = await User.findOne({where: {username: search}});
                 if (user == null) return -1;
                 return user;
+            } else if (column == 'email') {
+                let user = await User.findOne({where: {email: search}});
+                if (user == null) return -1;
+                return user;
             } else if (column == 'password') {
                 let user = await User.findOne({where: {password: search}});
                 if (user == null) return -1;
