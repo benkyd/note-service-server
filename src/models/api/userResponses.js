@@ -27,8 +27,9 @@ export class User extends API {
     }
 
     endpoint() {
-        this.res.setHeader('Content-type', 'application/json');
-        this.res.status(200);
-        this.res.end(JSON.stringify(this.response, false, 4));
+        this.res
+            .setHeader('Content-type', 'application/json')
+            .status(200)
+            .end(JSON.stringify(this.response, false, 4));
     }
 }

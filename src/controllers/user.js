@@ -31,12 +31,15 @@ export class UserController extends ControllerHandler {
         if (errors.count() > 0) {
             errors.endpoint();
             next();
+            return;
         }
 
-        let success = new User(id, username, password, email, ip, 1234).insert();
+        let user = new User(id, username, password, email, ip, 1234)
+        let success = await user.insert();
         if (success == -1) {
-            errors.addError(500, 'Internal server error', 'An error occured with the databse').endpoint();
+            errors.addError(500, 'Internal server error').endpoint();
             next();
+            return;
         }
 
         new API.user(res, id, username, email, new Date().toLocaleString(), token).endpoint();

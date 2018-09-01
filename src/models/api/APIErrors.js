@@ -21,19 +21,18 @@ export class APIErrors extends API {
     }
 
     addError(statusCode, message, verbose) {
+        verbose = verbose || message;
         this.errors.error.errors.push({status: statusCode, title: message, detail: verbose});
         this.errors.status.code = statusCode;
         this.errors.status.type = message;
         this.errors.status.message = verbose;
     }
 
-    count() {
-        return this.errors.error.errors.length;
-    }
+    count() { return this.errors.error.errors.length }
 
     endpoint() {
-        this.res.setHeader('Content-type', 'application/json');
-        this.res.status(this.errors.status.code);
-        this.res.end(JSON.stringify(this.errors, false, 4));
+        this.res
+            .status(this.errors.status.code)
+            .end(JSON.stringify(this.errors, false, 4));
     }
 }

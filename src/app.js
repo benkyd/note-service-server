@@ -3,6 +3,7 @@ import {Config} from './config/config'
 import {Database} from './models/database/database';
 import {Server} from './server';
 import {Router} from './controllers/routes/router';
+import {middleware, MiddleWare} from './controllers/middleware/index';
 
 import {User} from './models/user/user';
 
@@ -15,6 +16,7 @@ async function init() {
     await Database.testConnection();
     await Server.start();
     await Router.initEndpoints();
+    await MiddleWare.RateLimits.init();
     
     Logger.ready();
     

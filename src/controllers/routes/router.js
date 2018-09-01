@@ -1,6 +1,6 @@
 import {Logger} from '../../models/logger';
 import {Server} from '../../server';
-import {MiddleWare} from '../middleware';
+import {MiddleWare} from '../middleware/index';
 import {StatusCodes} from '../status';
 import {Controllers} from '../index';
 
@@ -12,11 +12,11 @@ export class Router {
 
         app = Server.App;
 
-        app.get('/', [MiddleWare.analytics, Router.frontPage]);
+        app.get('/', [MiddleWare.end, Router.frontPage]);
         
-        app.get('/user/:id', [MiddleWare.analytics]);
-        app.delete('/user/:id', [MiddleWare.analytics]);
-        app.post('/user', [MiddleWare.analytics, Controllers.UserController.newUser]);
+        app.get('/user/:id', [MiddleWare.end]);
+        app.delete('/user/:id', [MiddleWare.end]);
+        app.post('/user', [MiddleWare.end, Controllers.UserController.newUser]);
         
         app.use([StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');
