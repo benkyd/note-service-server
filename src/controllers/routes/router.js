@@ -17,8 +17,10 @@ export class Router {
         // app.get('/user/:id', [MiddleWare.RateLimits.request]);
         // app.delete('/user/:id', [MiddleWare.RateLimits.request]);
         app.post('/user', [MiddleWare.RateLimits.request, Controllers.UserController.newUser]);
-        
         app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate])
+
+        app.post('permanote', [MiddleWare.RateLimits])
+
 
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');
