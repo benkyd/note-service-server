@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import {Logger} from '../models/logger';
 import {ControllerHandler} from './controllerHandler';
 import {API} from '../models/api/api';
-import {Database} from '../models/database/database';
+import {Database} from '../models/database/database'
 import {User} from '../models/user/user';
 
 export class UserController extends ControllerHandler {
@@ -27,16 +27,27 @@ export class UserController extends ControllerHandler {
         if (await Database.users.getID('username', username) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
         if (await Database.users.getID('email', email) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
 
-        let id = new Date().getTime();
-        let token = "1234";
-
         if (errors.count() > 0) {
             errors.endpoint();
             next();
             return;
         }
+        
+        let response = new API.user(res, id, username, email, new Date().toLocaleString());
 
-        let user = new User(id, username, password, email, ip, 1234)
+
+        let encryptedPass = await User.Password.gen(password);
+        password = null; // Cleaning password from memory
+
+        console.log(encryptedPass);
+
+        let status = response.getStatus;
+        
+        let id = new Date().getTime();
+        let token = await User.Token.gen(status, id, encryptedPass);
+        response.Token = token;
+
+        let user = new User(id, username, encryptedPass, email, ip, 1234);
         let success = await user.insert();
         if (success == -1) {
             errors.addError(500, 'Internal server error').endpoint();
@@ -44,7 +55,7 @@ export class UserController extends ControllerHandler {
             return;
         }
 
-        new API.user(res, id, username, email, new Date().toLocaleString(), token).endpoint();
+        response.endpoint();
         next();
     }
 

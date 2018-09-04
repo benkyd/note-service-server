@@ -50,10 +50,8 @@ export class BaseDatabase {
                 primaryKey: true,
                 unique: true
             },
-            selector: Sequelize.TEXT,
-            validator: Sequelize.TEXT,
-            uid: Sequelize.BIGINT,
-            expires: Sequelize.TEXT
+            token: Sequelize.TEXT,
+            passhash: Sequelize.TEXT
         }, {
             tableName: `auth` 
         });

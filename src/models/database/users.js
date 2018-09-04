@@ -60,31 +60,29 @@ export class UserTools extends BaseDatabase {
         let User = BaseDatabase.User;
 
         try {
+            let user;
             if (column == 'id') {
                 return search;
             } else if (column == 'username') {
-                let user = await User.findOne({where: {username: search}});
+                user = await User.findOne({where: {username: search}});
                 if (user == null) return -1;
-                return user;
             } else if (column == 'email') {
-                let user = await User.findOne({where: {email: search}});
+                user = await User.findOne({where: {email: search}});
                 if (user == null) return -1;
-                return user;
             } else if (column == 'password') {
-                let user = await User.findOne({where: {password: search}});
+                user = await User.findOne({where: {password: search}});
                 if (user == null) return -1;
-                return user;
             } else if (column == 'ip') {
-                let user = await User.findOne({where: {ip: search}});
+                user = await User.findOne({where: {ip: search}});
                 if (user == null) return -1;
-                return user;
             } else if (column == 'authcode') {
-                let user = await User.findOne({where: {authcode: search}});
+                user = await User.findOne({where: {authcode: search}});
                 if (user == null) return -1;
-                return user;
             } else {
                 return -1
             }
+            return user.id;
+
         } catch (e) {
             Logger.error(`An error occured while querying the id of a user where ${column} is ${search}: ${e}`);
             return -1;

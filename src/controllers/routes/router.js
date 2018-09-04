@@ -12,12 +12,14 @@ export class Router {
 
         app = Server.App;
 
-        app.get('/', [MiddleWare.RateLimits.request, MiddleWare.analytics, Router.frontPage]);
+        app.get('/', [MiddleWare.RateLimits.request, Router.frontPage]);
         
-        app.get('/user/:id', [MiddleWare.RateLimits.request, MiddleWare.analytics,]);
-        app.delete('/user/:id', [MiddleWare.RateLimits.request, MiddleWare.analytics,]);
-        app.post('/user', [MiddleWare.RateLimits.request, MiddleWare.analytics, Controllers.UserController.newUser]);
+        app.get('/user/:id', [MiddleWare.RateLimits.request]);
+        app.delete('/user/:id', [MiddleWare.RateLimits.request]);
+        app.post('/user', [MiddleWare.RateLimits.request, Controllers.UserController.newUser]);
         
+        app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate])
+
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');
     }

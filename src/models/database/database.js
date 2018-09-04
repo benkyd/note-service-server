@@ -28,3 +28,4 @@ export class Database extends BaseDatabase {
 }
 
 Database.users = require('./users').UserTools;
+Database.auth = require('./tokens').TokenTools;

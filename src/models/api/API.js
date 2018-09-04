@@ -7,4 +7,4 @@ export class API extends BaseAPI {
 }
 
 API.errors = require('./APIErrors').APIErrors;
-API.user = require('./userResponses').User;
+API.user = require('./userResponses').UserAPI;

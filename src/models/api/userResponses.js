@@ -1,8 +1,15 @@
 import {API} from './API';
+import {User} from '../../models/user/user';
 
-export class User extends API {
-    constructor(res, id, username, email, updated, token) {
+export class UserAPI extends API {
+    get getStatus() {return this.response.status}
+
+    set Token(t) {this.response.data[0].token = t}
+    set Pass(p) {this.password = p}
+
+    constructor(res, id, username, email, updated) {
         super();
+        this.res = res;
         this.response = {
             status: {
                 error: false,
@@ -19,9 +26,19 @@ export class User extends API {
                         email: email,
                         updated: updated
                     },
-                    token: token
+                    token: null
                 }
             ]
+        }
+    }
+
+    sign(password) {
+        if (password) {
+            return this.response.data[0].token = User.Token.gen(this.response.status, this.id, password);
+        } else if (this.password) {
+            return this.response.data[0].token = User.Token.gen(this.response.status, this.id, this.password);
+        } else {
+            return -1;
         }
     }
 

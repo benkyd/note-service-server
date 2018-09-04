@@ -1,6 +1,7 @@
 import {Logger} from '../logger';
 import {BaseUser} from './baseUser';
 import {Database} from '../database/database';
+import { UserTools } from '../database/users';
 
 export class User extends BaseUser {
     constructor(id, username, password, email, ip, authcode) {
@@ -17,3 +18,6 @@ export class User extends BaseUser {
         return this._instance.delete();
     }
 }
+
+User.Token = require('./token').Token;
+User.Password = require('./passwords').Password;
