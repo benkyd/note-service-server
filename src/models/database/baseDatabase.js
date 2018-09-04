@@ -7,13 +7,11 @@ let connection;
 
 let User;
 let Auth;
-let Session;
 
 export class BaseDatabase { 
     static get Connection() {return connection;}
     static get User() {return User}
     static get Auth() {return Auth}
-    static get Session() {return Session}
 
     static async init() {
         Logger.info('Connecting to SQLite Database');
@@ -54,19 +52,6 @@ export class BaseDatabase {
             passhash: Sequelize.TEXT
         }, {
             tableName: `auth` 
-        });
-
-        Session = connection.define('session', {
-            sessionid: {
-                type: Sequelize.BIGINT,
-                primaryKey: true,
-                unique: true
-            },
-            sessiondata: Sequelize.TEXT,
-            timecreated: Sequelize.TEXT,
-            timeupdated: Sequelize.TEXT
-        }, {
-            tableName: `session` 
         });
 
         try {
