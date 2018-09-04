@@ -10,7 +10,8 @@ import {User} from './models/user/user';
 init();
 async function init() {
     Logger.SetLevel(Logger.VERBOSE_LOGS);
-    
+    Logger.SetDialect('SQLITE');
+
     await Config.load();
     await Database.init();
     await Database.testConnection();

@@ -14,8 +14,8 @@ export class Router {
 
         app.get('/', [MiddleWare.RateLimits.request, Router.frontPage]);
         
-        app.get('/user/:id', [MiddleWare.RateLimits.request]);
-        app.delete('/user/:id', [MiddleWare.RateLimits.request]);
+        // app.get('/user/:id', [MiddleWare.RateLimits.request]);
+        // app.delete('/user/:id', [MiddleWare.RateLimits.request]);
         app.post('/user', [MiddleWare.RateLimits.request, Controllers.UserController.newUser]);
         
         app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate])

@@ -24,8 +24,8 @@ export class UserController extends ControllerHandler {
         if (!UserController.isPasswordValid(password)) errors.addError(422, 'Unprocessaable entity', 'Invalid password has spaces');
         if (password.length < 7) errors.addError(422, 'Unprocessaable entity', 'Invalid password less than 7 charicters');
 
-        if (await Database.users.getID('username', username) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
-        if (await Database.users.getID('email', email) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
+        if (await Database.users.getUser('username', username) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
+        if (await Database.users.getUser('email', email) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
 
         if (errors.count() > 0) {
             errors.endpoint();
@@ -35,16 +35,14 @@ export class UserController extends ControllerHandler {
         
         let response = new API.user(res, id, username, email, new Date().toLocaleString());
 
-
         let encryptedPass = await User.Password.gen(password);
         password = null; // Cleaning password from memory
-
-        console.log(encryptedPass);
 
         let status = response.getStatus;
         
         let id = new Date().getTime();
         let token = await User.Token.gen(status, id, encryptedPass);
+        await Database.auth.newToken(id, token, encryptedPass);
         response.Token = token;
 
         let user = new User(id, username, encryptedPass, email, ip, 1234);

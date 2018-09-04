@@ -1,9 +1,15 @@
 const colours = require('colors/safe');
 
 let LogLevel = 1;
+let Dialect = 'SQLITE';
+
 export class Logger {
     static SetLevel(level) {
         LogLevel = level;
+    }
+
+    static SetDialect(dialect) {
+        Dialect = dialect;
     }
 
     static get VERBOSE_LOGS() {return 0;}
@@ -15,7 +21,7 @@ export class Logger {
         if (LogLevel > 0) return; 
         let d = new Date();
         console.log('[' + d.toLocaleString() + '] [' 
-            + colours.magenta('SQLITE') + '] ' + message);
+            + colours.magenta(Dialect) + '] ' + message);
     }
 
     static middleware(message) {
