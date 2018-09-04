@@ -56,7 +56,7 @@ export class UserTools extends BaseDatabase {
         }
     }
 
-    static async getID(column, search) {
+    static async getUser(column, search) {
         let User = BaseDatabase.User;
 
         try {
@@ -81,7 +81,7 @@ export class UserTools extends BaseDatabase {
             } else {
                 return -1
             }
-            return user.id;
+            return user;
 
         } catch (e) {
             Logger.error(`An error occured while querying the id of a user where ${column} is ${search}: ${e}`);

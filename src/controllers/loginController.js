@@ -23,13 +23,13 @@ export class LoginController extends ControllerHandler {
             return;
         }
 
-        let id;
+        let user;
         if (!username /*If they're loging in with email*/) {
-            if (await Database.users.getID('email', email) == -1) errors.addError(422, 'Unprocessable entity', 'There is no user with that email');
-            id = await Database.users.getID('email', email);
+            user = await Database.users.getUser('email', email);
+            if (user == -1) errors.addError(422, 'Unprocessable entity', 'There is no user with that email');
         } else {
-            if (await Database.users.getID('username', username) == -1) errors.addError(422, 'Unprocessable entity', 'There is no user with that username');
-            id = await Database.users.getID('username', username);
+            user = await Database.users.getUser('username', username);
+            if (user == -1) errors.addError(422, 'Unprocessable entity', 'There is no user with that username');
         }
 
         if (errors.count() > 0) {
@@ -38,7 +38,6 @@ export class LoginController extends ControllerHandler {
             return;
         }
 
-        let user = await Database.users.getUserByID(id);
         let match = await User.Password.compare(password, user.password);
 
         if (!match) errors.addError(401, 'Unauthorized', 'Incorrect password for user');
