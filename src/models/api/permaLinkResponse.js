@@ -21,7 +21,7 @@ export class PermaLinkAPI extends API {
                         text: text,
                         createdby: username,
                         id: id
-                    },
+                    }
                 }
             ]
         }

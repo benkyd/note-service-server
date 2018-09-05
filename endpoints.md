@@ -96,3 +96,32 @@ Expected response:
             "token": yourGeneratedToken
         }
     ]
+
+## POST /unauth/permanote
+Request body: 
+
+    {
+        "text": textOfNote
+    }
+
+The request will be processed by the server if a text feild is present, then the server will store and generate an endpoint for the permalink.
+
+Expected response: 
+
+        "data": [
+            {
+                "status": "Resource created",
+                "note": {
+                    "uid": uidAssignedToNote,
+                    "endpoint": "/api/note/generatedEndpoint",
+                    "text": inputedText
+                }
+            }
+        ]
+
+## GET /note/:endpoint
+Request args:
+
+    :endpoint
+
+If that note exists, the endpoint will simply return the text assigned to that endpoint or a 404 error.
