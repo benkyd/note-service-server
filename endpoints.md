@@ -27,7 +27,7 @@ Expected response:
         "data": [ {}, {} ]
     }
 
-All data relavent to the request will be in an object in the data section ([0] if you're only requesting one resource, multiple resources will utalize the array)
+All data relevant to the request will be in an object in the data section ([0] if you're only requesting one resource, multiple resources will utalize the array)
 
 ## All errors will be formated the same:
 
