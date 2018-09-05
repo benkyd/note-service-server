@@ -9,6 +9,7 @@ import {User} from './models/user/user';
 
 init();
 async function init() {
+    Logger.init('logs.log');
     Logger.SetLevel(Logger.VERBOSE_LOGS);
     Logger.SetDialect('SQLITE');
 
@@ -20,8 +21,6 @@ async function init() {
     await MiddleWare.RateLimits.init();
     
     Logger.ready();
-
-
     
     // Logger.debug(JSON.stringify(await Database.users.getUserByID(12341356), null, 4));
     // Logger.debug(JSON.stringify(await Database.users.listAll(), null, 4));

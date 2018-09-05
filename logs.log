@@ -1,0 +1,44 @@
+[SYSTEM STARTING UP] 
+[2018-9-5 17:52:08] [INFO] Loading config 
+[2018-9-5 17:52:08] [INFO] LOADED: src/config/configs/server.json 
+[2018-9-5 17:52:08] [INFO] LOADED: src/config/configs/database.json 
+[2018-9-5 17:52:08] [INFO] Config loaded 
+[2018-9-5 17:52:08] [INFO] Connecting to SQLite Database 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` BIGINT UNIQUE PRIMARY KEY, `username` TEXT, `password` TEXT, `email` TEXT, `ip` TEXT, `lastupdated` TEXT, `verified` TINYINT(1), `authcode` TEXT, `timeauthed` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`user`) 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_1`) 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `auth` (`id` BIGINT UNIQUE PRIMARY KEY, `token` TEXT, `passhash` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`auth`) 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_auth_1`) 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `permanotes` (`uid` BIGINT UNIQUE PRIMARY KEY, `endpoint` TEXT, `text` TEXT, `creatorid` BIGINT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`permanotes`) 
+[2018-9-5 17:52:08] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_permanotes_1`) 
+[2018-9-5 17:52:08] [INFO] Connected to SQLite Database 
+[2018-9-5 17:52:08] [INFO] Server created 
+[2018-9-5 17:52:08] [INFO] HTTP service is listening at port 8080 
+[2018-9-5 17:52:08] [INFO] Setting up API HTTP endpoints 
+[2018-9-5 17:52:08] [INFO] HTTP endpoints settup 
+[2018-9-5 17:52:08] [INFO] Initialized ratelimiting middleware 
+[2018-9-5 17:52:08] [READY] 
+[SYSTEM STARTING UP] 
+[2018-9-5 17:56:31] [INFO] Loading config 
+[2018-9-5 17:56:31] [INFO] LOADED: src/config/configs/server.json 
+[2018-9-5 17:56:31] [INFO] LOADED: src/config/configs/database.json 
+[2018-9-5 17:56:31] [INFO] Config loaded 
+[2018-9-5 17:56:31] [INFO] Connecting to SQLite Database 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` BIGINT UNIQUE PRIMARY KEY, `username` TEXT, `password` TEXT, `email` TEXT, `ip` TEXT, `lastupdated` TEXT, `verified` TINYINT(1), `authcode` TEXT, `timeauthed` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`user`) 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_1`) 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `auth` (`id` BIGINT UNIQUE PRIMARY KEY, `token` TEXT, `passhash` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`auth`) 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_auth_1`) 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `permanotes` (`uid` BIGINT UNIQUE PRIMARY KEY, `endpoint` TEXT, `text` TEXT, `creatorid` BIGINT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`permanotes`) 
+[2018-9-5 17:56:31] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_permanotes_1`) 
+[2018-9-5 17:56:31] [INFO] Connected to SQLite Database 
+[2018-9-5 17:56:31] [INFO] Server created 
+[2018-9-5 17:56:31] [INFO] HTTP service is listening at port 8080 
+[2018-9-5 17:56:31] [INFO] Setting up API HTTP endpoints 
+[2018-9-5 17:56:31] [INFO] HTTP endpoints settup 
+[2018-9-5 17:56:31] [INFO] Initialized ratelimiting middleware 
+[2018-9-5 17:56:31] [READY] 
