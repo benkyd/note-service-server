@@ -19,8 +19,8 @@ export class Router {
         app.post('/user', [MiddleWare.RateLimits.request, Controllers.UserController.newUser]);
         app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate]);
 
-        app.post('permanote', [MiddleWare.RateLimits]);
-
+        app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.unauthentacatedPermaLink]);
+        app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.getNote]);
 
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');

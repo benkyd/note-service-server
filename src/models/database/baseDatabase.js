@@ -7,11 +7,13 @@ let connection;
 
 let User;
 let Auth;
+let PermaNote;
 
 export class BaseDatabase { 
     static get Connection() {return connection;}
     static get User() {return User}
     static get Auth() {return Auth}
+    static get PermaNote() {return PermaNote}
 
     static async init() {
         Logger.info('Connecting to SQLite Database');
@@ -52,6 +54,20 @@ export class BaseDatabase {
             passhash: Sequelize.TEXT
         }, {
             tableName: `auth` 
+        });
+
+        PermaNote = connection.define('permanote', {
+            uid: {
+                type: Sequelize.BIGINT,
+                primaryKey: true,
+                unique: true
+            },
+            endpoint: Sequelize.TEXT,
+            text: Sequelize.TEXT,
+            creatorid: {
+                type: Sequelize.BIGINT,
+                allowNull: true
+            }
         });
 
         try {

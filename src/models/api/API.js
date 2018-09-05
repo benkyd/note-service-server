@@ -8,3 +8,4 @@ export class API extends BaseAPI {
 
 API.errors = require('./APIErrors').APIErrors;
 API.user = require('./userResponses').UserAPI;
+API.permalink = require('./permaLinkResponse').PermaLinkAPI;
