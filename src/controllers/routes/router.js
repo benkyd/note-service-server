@@ -22,6 +22,18 @@ export class Router {
         app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.unauthentacatedPermaLink]);
         app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.getNote]);
 
+        app.post('/auth/note'); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
+        app.post('/aith/group');
+        
+        app.get('/auth/getallnotes');
+        app.get('/auth/getallgroups');
+
+        app.post('/auth/movenote');
+        app.post('/auth/movegroup');
+
+        app.delete('/auth/deletenote');
+        app.delete('/auth/deletegroup');
+
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');
     }
