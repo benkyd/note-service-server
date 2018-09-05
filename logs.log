@@ -42,3 +42,7 @@
 [2018-9-5 17:56:31] [INFO] HTTP endpoints settup 
 [2018-9-5 17:56:31] [INFO] Initialized ratelimiting middleware 
 [2018-9-5 17:56:31] [READY] 
+[2018-9-5 18:13:31] [HTTP-MIDDLEWARE] GET request to / 
+[2018-9-5 18:13:31] [DEBUG] New rate limiting bucket 
+[2018-9-5 18:28:52] [HTTP-MIDDLEWARE] GET request to / 
+[2018-9-5 18:28:52] [DEBUG] New rate limiting bucket 
