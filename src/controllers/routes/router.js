@@ -14,25 +14,26 @@ export class Router {
 
         app.get('/', [MiddleWare.RateLimits.request, Router.frontPage]);
         
-        // app.get('/user/:id', [MiddleWare.RateLimits.request]);
-        // app.delete('/user/:id', [MiddleWare.RateLimits.request]);
         app.post('/user', [MiddleWare.RateLimits.request, Controllers.UserController.newUser]);
         app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate]);
+        
+        app.get('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
+        app.delete('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
         app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.unauthentacatedPermaLink]);
         app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.getNote]);
 
-        app.post('/auth/note'); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
-        app.post('/aith/group');
+        app.post('/auth/note', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
+        app.post('/aith/group', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         
-        app.get('/auth/getallnotes');
-        app.get('/auth/getallgroups');
+        app.get('/auth/getallnotes', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
+        app.get('/auth/getallgroups', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
-        app.post('/auth/movenote');
-        app.post('/auth/movegroup');
+        app.post('/auth/movenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
+        app.post('/auth/movegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
-        app.delete('/auth/deletenote');
-        app.delete('/auth/deletegroup');
+        app.delete('/auth/deletenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
+        app.delete('/auth/deletegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');

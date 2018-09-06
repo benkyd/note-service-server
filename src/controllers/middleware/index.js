@@ -20,3 +20,4 @@ export class MiddleWare {
 }
 
 MiddleWare.RateLimits = require('./rateLimits').RateLimits;
+MiddleWare.Auth = require('./auth').AuthMiddleWare;
