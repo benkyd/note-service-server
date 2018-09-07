@@ -16,6 +16,8 @@ export class BaseDatabase {
     static get User() {return User}
     static get Auth() {return Auth}
     static get PermaNote() {return PermaNote}
+    static get Group() {return Group}
+    static get Note() {return Note}
 
     static async init() {
         Logger.info('Connecting to SQLite Database');
@@ -103,6 +105,11 @@ export class BaseDatabase {
             catergory: {
                 type: Sequelize.TEXT,
                 allowNull: true
+            },
+            endpoint: {
+                type: Sequelize.TEXT,
+                allowNull: true,
+                unique: true
             },
             lastupdated: Sequelize.TEXT
         }, {
