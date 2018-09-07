@@ -23,7 +23,7 @@ export class Router {
         app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.unauthentacatedPermaLink]);
         app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.getNote]);
 
-        app.post('/auth/note', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
+        app.post('/auth/note', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.NoteController.newNote]); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
         app.post('/aith/group', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         
         app.get('/auth/getallnotes', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);

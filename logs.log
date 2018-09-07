@@ -480,3 +480,374 @@
 [9/6/2018, 3:22:22 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
 [9/6/2018, 3:22:22 PM] [DEBUG] 1536158305675 
 [9/6/2018, 3:26:59 PM] [HTTP-MIDDLEWARE] GET request to /favicon.ico 
+[SYSTEM STARTING UP] 
+[9/7/2018, 2:20:04 PM] [INFO] Loading config 
+[9/7/2018, 2:20:04 PM] [INFO] LOADED: src/config/configs/server.json 
+[9/7/2018, 2:20:04 PM] [INFO] LOADED: src/config/configs/database.json 
+[9/7/2018, 2:20:04 PM] [INFO] Config loaded 
+[9/7/2018, 2:20:04 PM] [INFO] Connecting to SQLite Database 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` BIGINT UNIQUE PRIMARY KEY, `username` TEXT, `password` TEXT, `email` TEXT, `ip` TEXT, `lastupdated` TEXT, `verified` TINYINT(1), `authcode` TEXT, `timeauthed` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`user`) 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_1`) 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `auth` (`id` BIGINT UNIQUE PRIMARY KEY, `token` TEXT, `passhash` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`auth`) 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_auth_1`) 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `permanotes` (`uid` BIGINT UNIQUE PRIMARY KEY, `endpoint` TEXT, `text` TEXT, `creatorid` BIGINT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`permanotes`) 
+[9/7/2018, 2:20:05 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_permanotes_1`) 
+[9/7/2018, 2:20:05 PM] [INFO] Connected to SQLite Database 
+[9/7/2018, 2:20:05 PM] [INFO] Server created 
+[9/7/2018, 2:20:05 PM] [INFO] HTTP service is listening at port 8080 
+[9/7/2018, 2:20:05 PM] [INFO] Setting up API HTTP endpoints 
+[9/7/2018, 2:20:05 PM] [INFO] HTTP endpoints settup 
+[9/7/2018, 2:20:05 PM] [INFO] Initialized ratelimiting middleware 
+[9/7/2018, 2:20:05 PM] [READY] 
+[SYSTEM STARTING UP] 
+[9/7/2018, 4:30:15 PM] [INFO] Loading config 
+[9/7/2018, 4:30:15 PM] [INFO] LOADED: src/config/configs/server.json 
+[9/7/2018, 4:30:15 PM] [INFO] LOADED: src/config/configs/database.json 
+[9/7/2018, 4:30:15 PM] [INFO] Config loaded 
+[9/7/2018, 4:30:15 PM] [INFO] Connecting to SQLite Database 
+[9/7/2018, 4:30:15 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` BIGINT UNIQUE PRIMARY KEY, `username` TEXT, `password` TEXT, `email` TEXT, `ip` TEXT, `lastupdated` TEXT, `verified` TINYINT(1), `authcode` TEXT, `timeauthed` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 4:30:15 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`user`) 
+[9/7/2018, 4:30:15 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_1`) 
+[9/7/2018, 4:30:15 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `auth` (`id` BIGINT UNIQUE PRIMARY KEY, `token` TEXT, `passhash` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 4:30:15 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`auth`) 
+[9/7/2018, 4:30:15 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_auth_1`) 
+[9/7/2018, 4:30:15 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `permanotes` (`uid` BIGINT UNIQUE PRIMARY KEY, `endpoint` TEXT, `text` TEXT, `creatorid` BIGINT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 4:30:16 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`permanotes`) 
+[9/7/2018, 4:30:16 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_permanotes_1`) 
+[9/7/2018, 4:30:16 PM] [INFO] Connected to SQLite Database 
+[9/7/2018, 4:30:16 PM] [INFO] Server created 
+[9/7/2018, 4:30:16 PM] [INFO] HTTP service is listening at port 8080 
+[9/7/2018, 4:30:16 PM] [INFO] Setting up API HTTP endpoints 
+[9/7/2018, 4:30:16 PM] [INFO] HTTP endpoints settup 
+[9/7/2018, 4:30:16 PM] [INFO] Initialized ratelimiting middleware 
+[9/7/2018, 4:30:16 PM] [READY] 
+[9/7/2018, 4:30:25 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:30:25 PM] [DEBUG] New rate limiting bucket 
+[9/7/2018, 4:30:25 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:30:25 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:30:25 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[SYSTEM STARTING UP] 
+[9/7/2018, 4:31:50 PM] [INFO] Loading config 
+[9/7/2018, 4:31:50 PM] [INFO] LOADED: src/config/configs/server.json 
+[9/7/2018, 4:31:50 PM] [INFO] LOADED: src/config/configs/database.json 
+[9/7/2018, 4:31:50 PM] [INFO] Config loaded 
+[9/7/2018, 4:31:51 PM] [INFO] Connecting to SQLite Database 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` BIGINT UNIQUE PRIMARY KEY, `username` TEXT, `password` TEXT, `email` TEXT, `ip` TEXT, `lastupdated` TEXT, `verified` TINYINT(1), `authcode` TEXT, `timeauthed` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`user`) 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_1`) 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `auth` (`id` BIGINT UNIQUE PRIMARY KEY, `token` TEXT, `passhash` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`auth`) 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_auth_1`) 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `permanotes` (`uid` BIGINT UNIQUE PRIMARY KEY, `endpoint` TEXT, `text` TEXT, `creatorid` BIGINT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`permanotes`) 
+[9/7/2018, 4:31:51 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_permanotes_1`) 
+[9/7/2018, 4:31:51 PM] [INFO] Connected to SQLite Database 
+[9/7/2018, 4:31:51 PM] [INFO] Server created 
+[9/7/2018, 4:31:51 PM] [INFO] HTTP service is listening at port 8080 
+[9/7/2018, 4:31:51 PM] [INFO] Setting up API HTTP endpoints 
+[9/7/2018, 4:31:51 PM] [INFO] HTTP endpoints settup 
+[9/7/2018, 4:31:51 PM] [INFO] Initialized ratelimiting middleware 
+[9/7/2018, 4:31:51 PM] [READY] 
+[9/7/2018, 4:31:55 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:31:55 PM] [DEBUG] New rate limiting bucket 
+[9/7/2018, 4:31:55 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:31:55 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:31:55 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:32:04 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:07 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:08 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:13 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:13 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:13 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:13 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:13 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:32:13 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:13 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:32:19 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:19 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:32:19 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:32:19 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:32:25 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:25 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:32:55 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:32:55 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:32:55 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:32:55 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:20 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:21 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:21 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:21 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:22 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:22 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:22 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:22 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:23 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:23 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:23 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:23 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:23 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:23 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:23 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:23 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:36 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:40 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:42 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:42 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:43 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:43 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:44 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:44 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:44 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:45 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:45 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:45 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:46 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:46 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:47 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:47 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:47 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:47 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:56 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:56 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:56 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:56 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:56 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:56 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:56 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:57 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:57 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:57 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:57 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:57 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:57 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/7/2018, 4:35:57 PM] [HTTP-MIDDLEWARE] ::1 is being rate limited 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536158305675; 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 
+[9/7/2018, 4:35:57 PM] [DEBUG] {
+    "id": 1536158305675,
+    "username": "plane000",
+    "password": "$2b$10$MAi9f0td3zagyFxEft6br.ku60grqTckzuVI1usbfqlyUo.bSbmHK",
+    "email": "playsplane@gmail.com",
+    "ip": "::1",
+    "lastupdated": "1536158305835",
+    "verified": false,
+    "authcode": "1234",
+    "timeauthed": "-1",
+    "createdAt": "2018-09-05T14:38:25.837Z",
+    "updatedAt": "2018-09-05T14:38:25.837Z"
+} 

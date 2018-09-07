@@ -70,6 +70,8 @@ export class BaseDatabase {
             }
         });
 
+        
+
         try {
             await connection.sync({force: false});
         } catch (e) {

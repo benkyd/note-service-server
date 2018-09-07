@@ -12,7 +12,7 @@ export class AuthMiddleWare extends MiddleWare {
             errors.endpoint();
             return;
         }
-        
+         
         let token = req.headers.authorization;
         let user = await AuthModel.getUserFromToken(token);
         if (user == -1) {
