@@ -935,3 +935,31 @@
 [2018-9-7 17:49:25] [INFO] HTTP endpoints settup 
 [2018-9-7 17:49:25] [INFO] Initialized ratelimiting middleware 
 [2018-9-7 17:49:25] [READY] 
+[SYSTEM STARTING UP] 
+[2018-9-7 19:00:34] [INFO] Loading config 
+[2018-9-7 19:00:34] [INFO] LOADED: src/config/configs/server.json 
+[2018-9-7 19:00:34] [INFO] LOADED: src/config/configs/database.json 
+[2018-9-7 19:00:34] [INFO] Config loaded 
+[2018-9-7 19:00:34] [INFO] Connecting to SQLite Database 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` BIGINT UNIQUE PRIMARY KEY, `username` TEXT, `password` TEXT, `email` TEXT, `ip` TEXT, `lastupdated` TEXT, `verified` TINYINT(1), `authcode` TEXT, `timeauthed` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`user`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_1`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `auth` (`id` BIGINT UNIQUE PRIMARY KEY, `token` TEXT, `passhash` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`auth`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_auth_1`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `permanote` (`uid` BIGINT UNIQUE PRIMARY KEY, `endpoint` TEXT, `text` TEXT, `creatorid` BIGINT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`permanote`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_permanote_1`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `group` (`id` BIGINT UNIQUE PRIMARY KEY, `creatorid` BIGINT, `order` INTEGER, `lastupdated` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`group`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_group_1`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `note` (`id` BIGINT UNIQUE PRIMARY KEY, `content` TEXT, `parentgroup` BIGINT, `creatorid` BIGINT, `order` INTEGER, `catergory` TEXT, `lastupdated` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`note`) 
+[2018-9-7 19:00:34] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_note_1`) 
+[2018-9-7 19:00:34] [INFO] Connected to SQLite Database 
+[2018-9-7 19:00:34] [INFO] Server created 
+[2018-9-7 19:00:34] [INFO] HTTP service is listening at port 8080 
+[2018-9-7 19:00:34] [INFO] Setting up API HTTP endpoints 
+[2018-9-7 19:00:34] [INFO] HTTP endpoints settup 
+[2018-9-7 19:00:34] [INFO] Initialized ratelimiting middleware 
+[2018-9-7 19:00:34] [READY] 
