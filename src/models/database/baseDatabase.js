@@ -8,6 +8,8 @@ let connection;
 let User;
 let Auth;
 let PermaNote;
+let Group;
+let Note;
 
 export class BaseDatabase { 
     static get Connection() {return connection;}
@@ -68,9 +70,44 @@ export class BaseDatabase {
                 type: Sequelize.BIGINT,
                 allowNull: true
             }
+        }, {
+            tableName: `permanote`
         });
 
-        
+        Group = connection.define('group', {
+            id: {
+                type: Sequelize.BIGINT,
+                primaryKey: true,
+                unique: true
+            },
+            creatorid: Sequelize.BIGINT,
+            order: Sequelize.INTEGER,
+            lastupdated: Sequelize.TEXT
+        }, {
+            tableName: `group`
+        });
+
+        Note = connection.define('note', {
+            id: {
+                type: Sequelize.BIGINT,
+                primaryKey: true,
+                unique: true
+            },
+            content: Sequelize.TEXT,
+            parentgroup: {
+                type: Sequelize.BIGINT,
+                allowNull: true
+            },
+            creatorid: Sequelize.BIGINT,
+            order: Sequelize.INTEGER,
+            catergory: {
+                type: Sequelize.TEXT,
+                allowNull: true
+            },
+            lastupdated: Sequelize.TEXT
+        }, {
+            tableName: `note`
+        });
 
         try {
             await connection.sync({force: false});
