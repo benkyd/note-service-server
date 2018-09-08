@@ -32,4 +32,5 @@ Object.defineProperty(global, "__function", {
         return __stack[1].getFunctionName();
     }
 });
+
 module.exports = require('./src/app');
