@@ -8,11 +8,8 @@ export class NoteController extends ControllerHandler {
     static async newNote(req, res, next) {
         Logger.debug(JSON.stringify(req.user, false, 4));
 
+        console.dir(__stack, { depth: null })
         
-
-
-
         next();
     }
-
 }
