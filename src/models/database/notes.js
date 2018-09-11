@@ -19,7 +19,7 @@ export class NoteTools extends BaseDatabase {
             });
             return note;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while inserting note ${id}: ${e}`);
             return -1;
         }
     }
@@ -31,7 +31,7 @@ export class NoteTools extends BaseDatabase {
             await Note.destroy({where: {id: id}});
             return 1;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while deleting note ${id}: ${e}`);
             return -1;
         }
     }
@@ -43,7 +43,7 @@ export class NoteTools extends BaseDatabase {
             await Note.update({endpoint: endpoint}, {where: {id: id}});
             await this.updateLastUpdateTime(id);
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while editing note ${id}: ${e}`);
             return -1;
         }
     }
@@ -56,7 +56,7 @@ export class NoteTools extends BaseDatabase {
             if (note == null) return -1;
             return note;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while getting note ${id}: ${e}`);
             return -1;
         }
     }
@@ -69,7 +69,7 @@ export class NoteTools extends BaseDatabase {
             await this.updateLastUpdatedTime(id);
             return 1;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while updating note ${id}: ${e}`);
             return -1;
         }
     }
@@ -82,7 +82,7 @@ export class NoteTools extends BaseDatabase {
             await this.updateLastUpdatedTime(id);
             return 1;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while updating note catergory ${id}: ${e}`);
             return -1;
         }
     }
@@ -95,7 +95,7 @@ export class NoteTools extends BaseDatabase {
             await this.updateLastUpdatedTime(id);
             return 1;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while reordering note ${id}: ${e}`);
             return -1;
         }
     }
@@ -108,7 +108,7 @@ export class NoteTools extends BaseDatabase {
             await this.updateLastUpdatedTime(id);
             return 1;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while renaming note ${id}: ${e}`);
             return -1;
         }
     }
@@ -121,7 +121,7 @@ export class NoteTools extends BaseDatabase {
             if (note == null) return -1;
             return note;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while getting note ${id}: ${e}`);
             return -1;
         }
     }
@@ -134,7 +134,7 @@ export class NoteTools extends BaseDatabase {
             if (note == null) return -1;
             return note;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while getting notes from ${userid}: ${e}`);
             return -1;
         }
     }
@@ -147,7 +147,7 @@ export class NoteTools extends BaseDatabase {
             if (note == null) return -1;
             return note;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while getting notes from group ${groupid}: ${e}`);
             return -1;
         }
     }
@@ -159,7 +159,7 @@ export class NoteTools extends BaseDatabase {
             await Note.update({lastupdated: new Date().getTime()}, {where: {id: id}});
             return 1;
         } catch (e) {
-            Logger.error(`An error occured while inserting group ${id}: ${e}`);
+            Logger.error(`An error occured while updating note update time ${id}: ${e}`);
             return -1;
         }
     }

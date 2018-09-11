@@ -29,4 +29,6 @@ export class Database extends BaseDatabase {
 
 Database.users = require('./users').UserTools;
 Database.auth = require('./tokens').TokenTools;
-Database.permalink = require('./permaLink').PermaLinkTools;
+Database.permalink = require('./permalinks').PermaLinkTools;
+Database.notegroup = require('./notegroups').NoteGroupTools;
+Database.note = require('./notes').NoteTools;

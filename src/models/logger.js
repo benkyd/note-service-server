@@ -1,4 +1,5 @@
 const colours = require('colors/safe');
+const StackTrace = require('stacktrace-js');
 const fs = require('fs');
 
 let LogLevel = 1;
@@ -47,7 +48,7 @@ export class Logger {
     static debug(message) {
         if (LogLevel > 1) return; 
         let d = new Date();
-        fs.appendFileSync(logPath, `[${d.toLocaleString()}] [DEBUG] ${message} \n`);
+        fs.appendFileSync(logPath, `[${d.toLocaleString()}] [DEBUG] [${StackTrace.getSync()[1].fileName + ':' + StackTrace.getSync()[1].lineNumber}] ${message} \n`);
         console.log('[' + d.toLocaleString() + '] [' 
             + colours.cyan('DEBUG') + '] ' + message);
     }
