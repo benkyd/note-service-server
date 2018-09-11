@@ -6,13 +6,18 @@ import {PermaLink} from '../models/permalinks/permalink';
 
 export class NoteController extends ControllerHandler {
     static async newNote(req, res, next) {
-        Logger.debug(JSON.stringify(req.user, false, 4));
+        let errors = new API.errors(res);
+        // Logger.debug(JSON.stringify(req.user, false, 4));
 
         let content = req.body.text || undefined;
         let creatorid = req.user.id || undefined;
         let group = req.body.parentgroup || undefined;
         let order = req.body.order || undefined;
 
+        let user = req.user || undefined;
+
+        if (!creatorid) errors.addError(403, 'Forbidden');
+        
         
 
         next();
