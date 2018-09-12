@@ -6,7 +6,6 @@ import {PermaLink} from '../models/permalinks/permalink';
 
 export class NoteController extends ControllerHandler {
     static async newNote(req, res, next) {
-<<<<<<< HEAD
         let errors = new API.errors(res);
         // Logger.debug(JSON.stringify(req.user, false, 4));
 
@@ -19,9 +18,6 @@ export class NoteController extends ControllerHandler {
 
         if (!creatorid) errors.addError(403, 'Forbidden');
         
-=======
-        Logger.debug(JSON.stringify(req.user));
->>>>>>> 9a16dd229269b65aebe97d1fa8ce0aea771785ad
         
 
         next();
