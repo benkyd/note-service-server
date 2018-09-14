@@ -23,6 +23,10 @@ export class NoteController extends ControllerHandler {
             next();
             return;
         }
+
+        if (!group) group == 0;
+
+        
         
         // what the hecking heck is this code supoased to do you hecking idiot
 
