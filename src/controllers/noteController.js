@@ -16,9 +16,15 @@ export class NoteController extends ControllerHandler {
 
         let user = req.user || undefined;
 
-        if (!creatorid) errors.addError(403, 'Forbidden');
+        if (!creatorid || !user) errors.addError(403, 'Forbidden');
         
+        if (errors.count() > 0) {
+            errors.endpoint();
+            next();
+            return;
+        }
         
+        // what the hecking heck is this code supoased to do you hecking idiot
 
         next();
     }

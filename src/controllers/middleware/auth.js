@@ -22,7 +22,7 @@ export class AuthMiddleWare extends MiddleWare {
         }
         
         req.user = user;
-
+        Logger.debug(`User ${user.id} authenticated`);
         next();
     }
 }

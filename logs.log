@@ -3278,3 +3278,42 @@
 [2018-9-8 15:40:54] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjQxNzYwMH0.4orSGRhO3Ytug0hJsbfRMDme5xUs2l8lT8svCYcnQAw' LIMIT 1; 
 [2018-9-8 15:40:54] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536417600066; 
 [2018-9-8 15:40:54] [DEBUG] [D:/Programming/Projects/NoteService/note-service-server/src/controllers/noteController.js:9] {"id":1536417600066,"username":"plane000","password":"$2b$10$pGQNawrnCc6M7Zg9LOFywu7KUaL0gD9JZGGz4z5GB6XX8YwK15RuC","email":"plsaysplane@gmail.com","ip":"::1","lastupdated":"1536417600236","verified":false,"authcode":"1234","timeauthed":"-1","createdAt":"2018-09-08T14:40:00.236Z","updatedAt":"2018-09-08T14:40:00.236Z"} 
+[SYSTEM STARTING UP] 
+[9/14/2018, 1:22:59 PM] [INFO] Loading config 
+[9/14/2018, 1:22:59 PM] [INFO] LOADED: src/config/configs/server.json 
+[9/14/2018, 1:22:59 PM] [INFO] LOADED: src/config/configs/database.json 
+[9/14/2018, 1:22:59 PM] [INFO] Config loaded 
+[9/14/2018, 1:22:59 PM] [INFO] Connecting to SQLite Database 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` BIGINT UNIQUE PRIMARY KEY, `username` TEXT, `password` TEXT, `email` TEXT, `ip` TEXT, `lastupdated` TEXT, `verified` TINYINT(1), `authcode` TEXT, `timeauthed` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`user`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_user_1`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `auth` (`id` BIGINT UNIQUE PRIMARY KEY, `token` TEXT, `passhash` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`auth`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_auth_1`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `permanote` (`uid` BIGINT UNIQUE PRIMARY KEY, `endpoint` TEXT, `text` TEXT, `creatorid` BIGINT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`permanote`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_permanote_1`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `group` (`id` BIGINT UNIQUE PRIMARY KEY, `creatorid` BIGINT, `order` INTEGER, `lastupdated` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`group`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_group_1`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): CREATE TABLE IF NOT EXISTS `note` (`id` BIGINT UNIQUE PRIMARY KEY, `content` TEXT, `parentgroup` BIGINT, `creatorid` BIGINT, `order` INTEGER, `catergory` TEXT, `endpoint` TEXT UNIQUE, `lastupdated` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL); 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_LIST(`note`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_note_1`) 
+[9/14/2018, 1:23:01 PM] [SQLITE] Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_note_2`) 
+[9/14/2018, 1:23:01 PM] [INFO] Connected to SQLite Database 
+[9/14/2018, 1:23:01 PM] [INFO] Server created 
+[9/14/2018, 1:23:02 PM] [INFO] HTTP service is listening at port 8080 
+[9/14/2018, 1:23:02 PM] [INFO] Setting up API HTTP endpoints 
+[9/14/2018, 1:23:02 PM] [INFO] HTTP endpoints settup 
+[9/14/2018, 1:23:02 PM] [INFO] Initialized ratelimiting middleware 
+[9/14/2018, 1:23:02 PM] [READY] 
+[9/14/2018, 1:24:36 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/14/2018, 1:24:36 PM] [DEBUG] New rate limiting bucket 
+[9/14/2018, 1:24:36 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjE1ODMwNX0.3PBpiRRSw6_is-4hvLUR9qjvtHSEG2UGMsjC4piB26k' LIMIT 1; 
+[9/14/2018, 1:25:23 PM] [HTTP-MIDDLEWARE] POST request to /login 
+[9/14/2018, 1:25:23 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`username` = 'plane000' LIMIT 1; 
+[9/14/2018, 1:25:23 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`id` = 1536417600066; 
+[9/14/2018, 1:25:43 PM] [HTTP-MIDDLEWARE] POST request to /auth/note 
+[9/14/2018, 1:25:43 PM] [SQLITE] Executing (default): SELECT `id`, `token`, `passhash`, `createdAt`, `updatedAt` FROM `auth` AS `auth` WHERE `auth`.`token` = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlcnJvciI6ZmFsc2UsImNvZGUiOjIwMCwidHlwZSI6InN1Y2Nlc3MiLCJtZXNzYWdlIjoiU3VjY2VzcyIsImlhdCI6MTUzNjQxNzYwMH0.4orSGRhO3Ytug0hJsbfRMDme5xUs2l8lT8svCYcnQAw' LIMIT 1; 
+[9/14/2018, 1:25:43 PM] [SQLITE] Executing (default): SELECT `id`, `username`, `password`, `email`, `ip`, `lastupdated`, `verified`, `authcode`, `timeauthed`, `createdAt`, `updatedAt` FROM `user` AS `user` WHERE `user`.`id` = 1536417600066; 
+[9/14/2018, 1:25:43 PM] [DEBUG] User 1536417600066 authenticated. 
