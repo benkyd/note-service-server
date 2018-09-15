@@ -95,7 +95,10 @@ export class BaseDatabase {
                 primaryKey: true,
                 unique: true
             },
-            content: Sequelize.TEXT,
+            content: {
+                type: Sequelize.TEXT,
+                allowNull: true
+            },
             parentgroup: {
                 type: Sequelize.BIGINT,
                 allowNull: true

@@ -10,7 +10,7 @@ export class PermaLink {
 
         let endpoint;
         while (true) {
-            endpoint = 'N';
+            endpoint = 'P';
             for (let i = 0; i < 7; i++)
                 endpoint += possible[Math.floor(Math.random() * possible.length)];
 
