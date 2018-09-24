@@ -2,10 +2,8 @@ import {Groups} from './groups';
 import {Database} from '../database/database';
 
 export class Notes extends Groups {
-    static async newNote(id, content, creatorid, order) {
-
-        
-        Database.notes.newNote(id, null, )
+    static async newNote(id, content, creatorid, order) {        
+        Database.note.newNote(id, content, creatorid, order, null);
     }
 
     static async genID() {

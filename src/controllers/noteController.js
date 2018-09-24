@@ -11,7 +11,7 @@ export class NoteController extends ControllerHandler {
 
         let content = req.body.text || null;
         let creatorid = req.user.id || undefined;
-        let group = req.body.parentgroup || undefined;
+        let group = req.body.parentgroup || null;
         let order = req.body.order || undefined;
 
         let user = req.user || undefined;
@@ -23,13 +23,16 @@ export class NoteController extends ControllerHandler {
             return;
         }
 
-        
+        if (!order) {
+            errors.addError(422, 'Unprocessable entity');
+            errors.endpoint();
+            next();
+            return;
+        }
 
-        if (!group) group == 0;
+        let id = await Notes.genID();
 
-
-        
-        // what the hecking heck is this code supoased to do you hecking idiot
+        Notes.newNote(id, content, creatorid, order);
 
         next();
     }
