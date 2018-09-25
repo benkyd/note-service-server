@@ -50,7 +50,6 @@ export class NoteController extends ControllerHandler {
         next();
     }
 
-    static async 
 }
 
 // id: id,
