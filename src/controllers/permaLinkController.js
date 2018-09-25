@@ -8,8 +8,8 @@ export class PermaLinkController extends ControllerHandler {
     static async unauthentacatedPermaLink(req, res, next) {
         let errors = new API.errors(res);
     
-        let text = req.body.text || undefined;
-        if (!text) {
+        let text = req.body.content || undefined;
+        if (!content) {
             errors.addError(422, 'Unprocessable entity', 'There is no text');
             errors.endpoint();
             next();
@@ -19,7 +19,7 @@ export class PermaLinkController extends ControllerHandler {
         let uid = await PermaLink.genUID() || new Date().getTime();
         let endpoint = await PermaLink.genEndpoint();
 
-        let success = await Database.permalink.newNote(uid, endpoint, text);
+        let success = await Database.permalink.newNote(uid, endpoint, content);
 
         if (success == -1) {
             errors.addError(500, 'Internal server error');
@@ -28,7 +28,7 @@ export class PermaLinkController extends ControllerHandler {
             return;
         }
 
-        new API.permalink(res, text, uid, endpoint).endpoint();
+        new API.permalink(res, content, uid, endpoint).endpoint();
         next();
     }
 

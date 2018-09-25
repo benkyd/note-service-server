@@ -1,7 +1,5 @@
-import {Logger} from '../models/logger';
 import {ControllerHandler} from './controllerHandler';
 import {API} from '../models/api/api';
-import {Database} from '../models/database/database'
 import {Notes} from '../models/notes/notes';
 
 export class NoteController extends ControllerHandler {
@@ -33,20 +31,27 @@ export class NoteController extends ControllerHandler {
         let id = await Notes.genID();
 
         let success;
-        
         if (!group) {
-            await Notes.newNote(id, content, creatorid, order);
+            success = await Notes.newNote(id, content, creatorid, order);
         } else {
-            let doesExist = await Notes.doesGroupExist();
+            let doesExist = await Notes.doesGroupExist(user.id, parentgroup);
             if (!doesExist) {
-                errors.addError(422, 'Unprocessable entity', 'The group you are trying to create this note in does not exist');
+                errors.addError(422, 'Unprocessable entity', 'You are trying to create a note for a group that does not exist');
                 errors.endpoint();
                 next();
                 return;
             }
-            await Notes.newGroupedNote(id, content, creatorid, order, parentgroup);
+            success = await Notes.newGroupedNote(id, content, creatorid, order, parentgroup);
         }
 
+        if (success == -1) {
+            errors.addError(500, 'Internal server error');
+            errors.endpoint();
+            next();
+            return;
+        }
+
+        new API.note(res, user, id, content, order, parentgroup).endpoint();
         next();
     }
 

@@ -24,7 +24,7 @@ export class Router {
         app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.getNote]);
 
         app.post('/auth/note', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.NoteController.newNote]); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
-        app.post('/auth/group', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
+        app.post('/auth/group', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.GroupController.newGroup]);
         
         app.get('/auth/getallnotes', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.get('/auth/getallgroups', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);

@@ -2,7 +2,7 @@ import {API} from './API';
 import {PermaLink} from '../../models/permalinks/permalink';
 
 export class PermaLinkAPI extends API {
-    constructor(res, text, uid, endpoint, username, id) {
+    constructor(res, content, uid, endpoint, username, id) {
         super();
         this.res = res;
         this.response = {
@@ -18,7 +18,7 @@ export class PermaLinkAPI extends API {
                     note: {
                         uid: uid,
                         endpoint: `/api/note/${endpoint}`,
-                        text: text,
+                        content: content,
                         createdby: username,
                         id: id
                     }
