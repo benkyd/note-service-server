@@ -3,7 +3,11 @@ import {Database} from '../database/database';
 
 export class Notes extends Groups {
     static async newNote(id, content, creatorid, order) {        
-        Database.note.newNote(id, content, creatorid, order, null);
+        return await Database.note.newNote(id, content, creatorid, order, null);
+    }
+
+    static async newGroupedNote(id, content, creatorid, order, parentgroup) {
+        return await Database.note.newNote(id, content, creatorid, order, parentgroup);
     }
 
     static async genID() {
@@ -33,10 +37,6 @@ export class Notes extends Groups {
     static async makeNotePerma(id, endpoint) {
 
     } 
-
-    static async newGroupedNote(id, content, creatorid, order, parentgroup) {
-
-    }
 
     static async reorderNote(id, newPosition) {
 

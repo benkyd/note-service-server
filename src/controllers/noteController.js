@@ -11,7 +11,7 @@ export class NoteController extends ControllerHandler {
 
         let content = req.body.text || null;
         let creatorid = req.user.id || undefined;
-        let group = req.body.parentgroup || null;
+        let group = req.body.parentgroup || undefined;
         let order = req.body.order || undefined;
 
         let user = req.user || undefined;
@@ -32,10 +32,25 @@ export class NoteController extends ControllerHandler {
 
         let id = await Notes.genID();
 
-        Notes.newNote(id, content, creatorid, order);
+        let success;
+        
+        if (!group) {
+            await Notes.newNote(id, content, creatorid, order);
+        } else {
+            let doesExist = await Notes.doesGroupExist();
+            if (!doesExist) {
+                errors.addError(422, 'Unprocessable entity', 'The group you are trying to create this note in does not exist');
+                errors.endpoint();
+                next();
+                return;
+            }
+            await Notes.newGroupedNote(id, content, creatorid, order, parentgroup);
+        }
 
         next();
     }
+
+    static async 
 }
 
 // id: id,

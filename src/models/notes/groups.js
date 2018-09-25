@@ -1,3 +1,11 @@
+import {Database} from '../database/database';
+
 export class Groups {
-    constructor() { }
+    static async newGroup() {
+
+    }
+
+    static async doesGroupExist() {
+
+    }
 }
