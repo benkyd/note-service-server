@@ -1,6 +1,7 @@
 import {Logger} from '../../models/logger';
 import {Server} from '../../server';
 import {MiddleWare} from '../middleware/index';
+import {ErrorHandler} from '../middleware/errors/errorHandler';
 import {StatusCodes} from '../status';
 import {Controllers} from '../index';
 
@@ -35,6 +36,7 @@ export class Router {
         app.delete('/auth/deletenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/deletegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
+        app.use(ErrorHandler.newError);
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');
     }
