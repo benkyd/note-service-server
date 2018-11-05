@@ -33,4 +33,4 @@ Object.defineProperty(global, "__function", {
     }
 });
 
-module.exports = require('./src/app');
+module.exports = require('./src/index');

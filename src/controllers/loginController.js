@@ -42,16 +42,13 @@ export class LoginController extends ControllerHandler {
 
         let match = await User.Password.compare(password, user.password);
 
-        if (!match) errors.addError(401, 'Unauthorized', 'Incorrect password for user');
-
-        if (errors.count() > 0) {
-            errors.endpoint();
+        if (!match) {
+            errors.addError(401, 'Unauthorized', 'Incorrect password for user').endpoint();
             next();
             return;
         }
 
         let response = new API.user(res, user.id, username, email, new Date(parseInt(user.lastupdated)).toLocaleString());
-
         let token = await Database.auth.getTokenByID(user.id);
         
         if (token == -1) {

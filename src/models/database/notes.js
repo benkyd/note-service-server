@@ -2,6 +2,11 @@ import {BaseDatabase} from './baseDatabase';
 import {Logger} from '../logger';
 
 export class NoteTools extends BaseDatabase {
+    static async listAll() {
+        let Note = BaseDatabase.Note;
+        return Note.findAll();
+    }
+
     static async newNote(id, content, creatorid, order, parentgroup) {
         parentgroup = parentgroup || null;
         let Note = BaseDatabase.Note;

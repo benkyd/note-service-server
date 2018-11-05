@@ -31,4 +31,5 @@ export class APIErrors extends API {
         this.res
             .status(this.errors.status.code)
             .end(JSON.stringify(this.errors, false, 4));
-    }}
+    }
+}
