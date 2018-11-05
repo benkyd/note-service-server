@@ -5,7 +5,6 @@ import {Notes} from '../models/notes/notes';
 export class NoteController extends ControllerHandler {
     static async newNote(req, res, next) {
         let errors = new API.errors(res);
-        // Logger.debug(JSON.stringify(req.user, false, 4));
 
         let content = req.body.text || null;
         let creatorid = req.user.id || undefined;

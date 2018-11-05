@@ -1,11 +1,9 @@
 import {Logger} from './models/logger';
-import {Config} from './config/config'
+import {Config} from './config/config';
 import {Database} from './models/database/database';
 import {Server} from './server';
 import {Router} from './controllers/routes/router';
-import {middleware, MiddleWare} from './controllers/middleware/index';
-
-import {User} from './models/user/user';
+import {MiddleWare} from './controllers/middleware/index';
 
 init();
 async function init() {
