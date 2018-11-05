@@ -1,6 +1,7 @@
 import {Logger} from '../../models/logger';
 import {Server} from '../../server';
 import {MiddleWare} from '../middleware/index';
+import {ErrorHandler} from '../middleware/errors/errorHandler';
 import {StatusCodes} from '../status';
 import {Controllers} from '../index';
 
@@ -16,7 +17,6 @@ export class Router {
         
         app.post('/user', [MiddleWare.RateLimits.request, Controllers.UserController.newUser]);
         app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate]);
-        
         app.get('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
@@ -25,7 +25,7 @@ export class Router {
 
         app.post('/auth/note', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.NoteController.newNote]); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
         app.post('/auth/group', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.GroupController.newGroup]);
-        
+
         app.get('/auth/getallnotes', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.get('/auth/getallgroups', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
@@ -35,6 +35,7 @@ export class Router {
         app.delete('/auth/deletenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/deletegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
+        app.use(ErrorHandler.newError);
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         Logger.info('HTTP endpoints settup');
     }

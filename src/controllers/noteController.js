@@ -4,7 +4,7 @@ import {Notes} from '../models/notes/notes';
 
 export class NoteController extends ControllerHandler {
     static async newNote(req, res, next) {
-        let errors = new API.errors(res);
+        const errors = new API.errors(res);
 
         let content = req.body.text || null;
         let creatorid = req.user.id || undefined;
@@ -14,15 +14,13 @@ export class NoteController extends ControllerHandler {
         let user = req.user || undefined;
 
         if (!creatorid || !user) {
-            errors.addError(403, 'Forbidden');
-            errors.endpoint();
+            errors.addError(403, 'Forbidden').endpoint();
             next();
             return;
         }
 
         if (!order) {
-            errors.addError(422, 'Unprocessable entity');
-            errors.endpoint();
+            errors.addError(422, 'Unprocessable entity').endpoint();
             next();
             return;
         }
@@ -35,8 +33,7 @@ export class NoteController extends ControllerHandler {
         } else {
             let doesExist = await Notes.doesGroupExist(user.id, parentgroup);
             if (!doesExist) {
-                errors.addError(422, 'Unprocessable entity', 'You are trying to create a note for a group that does not exist');
-                errors.endpoint();
+                errors.addError(422, 'Unprocessable entity', 'You are trying to create a note for a group that does not exist').endpoint();
                 next();
                 return;
             }
@@ -44,8 +41,7 @@ export class NoteController extends ControllerHandler {
         }
 
         if (success == -1) {
-            errors.addError(500, 'Internal server error');
-            errors.endpoint();
+            errors.addError(500, 'Internal server error').endpoint();
             next();
             return;
         }
@@ -53,7 +49,6 @@ export class NoteController extends ControllerHandler {
         new API.note(res, user, id, content, order, parentgroup).endpoint();
         next();
     }
-
 }
 
 // id: id,

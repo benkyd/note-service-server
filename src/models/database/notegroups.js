@@ -2,6 +2,11 @@ import {BaseDatabase} from './baseDatabase';
 import {Logger} from '../logger';
 
 export class NoteGroupTools extends BaseDatabase {
+    static async listAll() {
+        let Group = BaseDatabase.Group;
+        return Group.findAll();
+    }
+
     static async newGroup(id, creatorid, order) {
         let Group = BaseDatabase.Group;
 
