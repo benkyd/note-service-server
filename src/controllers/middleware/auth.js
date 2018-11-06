@@ -1,5 +1,5 @@
 import {MiddleWare} from './index';
-import {API} from '../../models/api/API';
+import {API} from '../api/api';
 import {Logger} from '../../models/logger'
 import {AuthModel} from '../../models/auth/authModel';
 

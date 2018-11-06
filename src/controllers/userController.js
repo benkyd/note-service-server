@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 
 import {Logger} from '../models/logger';
 import {ControllerHandler} from './controllerHandler';
-import {API} from '../models/api/api';
+import {API} from './api/api';
 import {Database} from '../models/database/database'
 import {User} from '../models/user/user';
 

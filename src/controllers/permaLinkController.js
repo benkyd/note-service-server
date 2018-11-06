@@ -1,6 +1,6 @@
 import {Logger} from '../models/logger';
 import {ControllerHandler} from './controllerHandler';
-import {API} from '../models/api/api';
+import {API} from './api/api';
 import {Database} from '../models/database/database'
 import {PermaLink} from '../models/permalinks/permalink';
 

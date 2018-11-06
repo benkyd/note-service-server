@@ -1,5 +1,5 @@
 import {ControllerHandler} from './controllerHandler';
-import {API} from '../models/api/api';
+import {API} from './api/api';
 import {Notes} from '../models/notes/notes';
 
 export class NoteController extends ControllerHandler {

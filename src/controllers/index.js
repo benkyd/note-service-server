@@ -1,4 +1,4 @@
-export let Controllers = {};
+export const Controllers = {};
 
 Controllers.UserController = require('./userController').UserController;
 Controllers.LoginController = require('./loginController').LoginController;
