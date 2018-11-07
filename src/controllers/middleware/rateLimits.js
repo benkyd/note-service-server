@@ -7,7 +7,7 @@ let buckets = {}
 
 export class RateLimits extends MiddleWare {
     static async request(req, res, next) {
-        let ip = req.connection.remoteAddress;
+        const ip = req.connection.remoteAddress;
         MiddleWare.analytics(req, res, next);
 
         if (!buckets[ip]) {

@@ -4,9 +4,9 @@ import {User} from './user';
 
 export class Token extends User {
     static async gen(status, clientID, clientSecret) {
-        let preGen = clientID + ':' + clientSecret;
+        const preGen = clientID + ':' + clientSecret;
 
-        let token = await jwt.sign(status, preGen);
+        const token = await jwt.sign(status, preGen);
         return token;
     }
 

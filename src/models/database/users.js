@@ -5,12 +5,12 @@ import {Logger} from '../logger';
 
 export class UserTools extends BaseDatabase {
     static async listAll() {
-        let User = BaseDatabase.User;
+        const User = super.User;
         return User.findAll();
     }
  
     static async newUser(id, username, password, email, ip, authcode) {
-        let User = BaseDatabase.User;
+        const User = super.User;
         
         try {
             let user = await User.create({
@@ -32,7 +32,7 @@ export class UserTools extends BaseDatabase {
     }
 
     static async deleteUser(id) {
-        let User = BaseDatabase.User;
+        const User = super.User;
 
         try {
             await User.destroy({where: {id: id}});
@@ -44,7 +44,7 @@ export class UserTools extends BaseDatabase {
     }
 
     static async getUserByID(id) {
-        let User = BaseDatabase.User;
+        const User = super.User;
         
         try {
             let user = await User.findOne({where: {id: id}});
@@ -57,7 +57,7 @@ export class UserTools extends BaseDatabase {
     }
 
     static async getUser(column, search) {
-        let User = BaseDatabase.User;
+        const User = super.User;
 
         try {
             let user;
@@ -90,7 +90,7 @@ export class UserTools extends BaseDatabase {
     }
 
     static async updateIP(id, newIP) {
-        let User = BaseDatabase.User;
+        const User = super.User;
 
         try {
             await User.update({ip: newIP}, {where: {id: id}});
@@ -102,7 +102,7 @@ export class UserTools extends BaseDatabase {
     } 
 
     static async authUser(id) {
-        let User = BaseDatabase.User;
+        const User = super.User;
 
         try {
             let user = await User.update({verified: true}, {where: {id: id}});

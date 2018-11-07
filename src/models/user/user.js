@@ -9,7 +9,7 @@ export class User extends BaseUser {
     }
     
     async insert() {
-        this._instance = await Database.users.newUser(this.id, this.username, this.password, this.email, this.ip, this.authcode)
+        this._instance = await Database.Users.newUser(this.id, this.username, this.password, this.email, this.ip, this.authcode);
         if (this._instance == -1) return -1;
         Logger.debug(`New user [${this.id}] ${this.username}`);
     }

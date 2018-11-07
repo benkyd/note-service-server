@@ -3,12 +3,12 @@ import {Logger} from '../logger';
 
 export class TokenTools extends BaseDatabase {
     static async listAll() {
-        let Auth = BaseDatabase.Auth;
+        const Auth = super.Auth;
         return Auth.findAll();
     }
 
     static async newToken(id, token, passHash) {
-        let Auth = BaseDatabase.Auth;
+        const Auth = super.Auth;
     
         try {
             let auth = await Auth.create({
@@ -24,7 +24,7 @@ export class TokenTools extends BaseDatabase {
     }
 
     static async delete(id) {
-        let Auth = BaseDatabase.Auth;
+        const Auth = super.Auth;
 
         try {
             await Auth.destroy({where: {id: id}});
@@ -36,7 +36,7 @@ export class TokenTools extends BaseDatabase {
     }
 
     static async getTokenByID(id) {
-        let Auth = BaseDatabase.Auth;
+        const Auth = super.Auth;
 
         try {
             let auth = await Auth.findOne({where: {id: id}});
@@ -49,7 +49,7 @@ export class TokenTools extends BaseDatabase {
     }
 
     static async getIDByToken(token) {
-        let Auth = BaseDatabase.Auth;
+        const Auth = super.Auth;
 
         try {
             let auth = await Auth.findOne({where: {token: token}});
@@ -62,7 +62,7 @@ export class TokenTools extends BaseDatabase {
     }
 
     static async getTokenByPassHash(hash) {
-        let Auth = BaseDatabase.Auth;
+        const Auth = super.Auth;
 
         try {
             let auth = await Auth.findOne({where: {passhash: hash}});
@@ -75,7 +75,7 @@ export class TokenTools extends BaseDatabase {
     }
 
     static async updateToken(id, newToken) {
-        let Auth = BaseDatabase.Auth;
+        const Auth = super.Auth;
 
         try {
             await Auth.update({token: newToken}, {where: {id: id}});

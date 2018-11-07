@@ -14,7 +14,7 @@ export class PermaLink {
             for (let i = 0; i < 7; i++)
                 endpoint += possible[Math.floor(Math.random() * possible.length)];
 
-            if (await Database.permalink.getNoteByEndpoint(endpoint) == -1)
+            if (await Database.PermaNotes.getNoteByEndpoint(endpoint) == -1)
                 break;
         }
 

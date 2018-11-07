@@ -6,19 +6,19 @@ import {Logger} from '../logger';
 
 export class Password extends User {
     static async gen(passwordSecret) {
-        let prehash = await sha256(passwordSecret);
-        let toHash = Buffer.from(prehash).toString('base64');
-        let salt = await bcrypt.genSaltSync(10);
-        let hash = await bcrypt.hashSync(toHash, salt);
+        const prehash = await sha256(passwordSecret);
+        const toHash = Buffer.from(prehash).toString('base64');
+        const salt = await bcrypt.genSaltSync(10);
+        const hash = await bcrypt.hashSync(toHash, salt);
 
         return hash;
     }
 
     static async compare(password, hashToCompare) {
         try {
-            let prehash = await sha256(password);
-            let toHash = Buffer.from(prehash).toString('base64');
-            let res = await bcrypt.compareSync(toHash, hashToCompare);
+            const prehash = await sha256(password);
+            const toHash = Buffer.from(prehash).toString('base64');
+            const res = await bcrypt.compareSync(toHash, hashToCompare);
             
             return res;
         } catch (e) {

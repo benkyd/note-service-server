@@ -5,30 +5,20 @@ import {Logger} from '../logger';
 
 export class Database extends BaseDatabase {
     static async exec(query) {
-        let connection = BaseDatabase.Connection;
-        let res;
-
-        let promise = new Promise((resolve, reject) => {
-            connection
-                .query(query)
-                .then(result => {
-                    Logger.database(JSON.stringify(res, null, 4));
-                    res = result[0][0].result;
-                    resolve();
-                })
-                .catch(err => {
-                    Logger.error('An error occured while querying a database: ' + err);
-                    reject()
-                });
-        });
-
-        await promise;
-        return res;
+        const connection = super.Connection;
+        try {
+            const result = await connection.query(query);
+            Logger.database(JSON.stringify(result, null, 4));
+            return result[0][0].result;
+        }
+        catch (e) {
+            Logger.error(`An error occured while querying a database: ${e}`);
+        }
     }
 }
 
-Database.users = require('./users').UserTools;
-Database.auth = require('./tokens').TokenTools;
-Database.permalink = require('./permalinks').PermaLinkTools;
-Database.notegroup = require('./notegroups').NoteGroupTools;
-Database.note = require('./notes').NoteTools;
+Database.Users = require('./users').UserTools;
+Database.Authorization = require('./tokens').TokenTools;
+Database.PermaNotes = require('./permalinks').PermaLinkTools;
+Database.NoteGroups = require('./notegroups').NoteGroupTools;
+Database.Notes = require('./notes').NoteTools;

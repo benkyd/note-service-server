@@ -6,12 +6,12 @@ export class NoteController extends ControllerHandler {
     static async newNote(req, res, next) {
         const errors = new API.errors(res);
 
-        let content = req.body.text || null;
-        let creatorid = req.user.id || undefined;
-        let group = req.body.parentgroup || undefined;
+        const content = req.body.text || null;
+        const creatorid = req.user.id || undefined;
+        const group = req.body.parentgroup || undefined;
         let order = req.body.order || undefined;
 
-        let user = req.user || undefined;
+        const user = req.user || undefined;
 
         if (!creatorid || !user) {
             errors.addError(403, 'Forbidden').endpoint();
@@ -25,13 +25,13 @@ export class NoteController extends ControllerHandler {
             return;
         }
 
-        let id = await Notes.genID();
+        const id = await Notes.genID();
 
         let success;
         if (!group) {
             success = await Notes.newNote(id, content, creatorid, order);
         } else {
-            let doesExist = await Notes.doesGroupExist(user.id, parentgroup);
+            const doesExist = await Notes.doesGroupExist(user.id, parentgroup);
             if (!doesExist) {
                 errors.addError(422, 'Unprocessable entity', 'You are trying to create a note for a group that does not exist').endpoint();
                 next();
