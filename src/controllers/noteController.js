@@ -14,13 +14,15 @@ export class NoteController extends ControllerHandler {
         const user = req.user || undefined;
 
         if (!creatorid || !user) {
-            errors.addError(403, 'Forbidden').endpoint();
+            errors.addError(403, 'Forbidden');
+            errors.endpoint();
             next();
             return;
         }
 
         if (!order) {
-            errors.addError(422, 'Unprocessable entity').endpoint();
+            errors.addError(422, 'Unprocessable entity');
+            errors.endpoint();
             next();
             return;
         }
@@ -33,7 +35,8 @@ export class NoteController extends ControllerHandler {
         } else {
             const doesExist = await Notes.doesGroupExist(user.id, parentgroup);
             if (!doesExist) {
-                errors.addError(422, 'Unprocessable entity', 'You are trying to create a note for a group that does not exist').endpoint();
+                errors.addError(422, 'Unprocessable entity', 'You are trying to create a note for a group that does not exist');
+                errors.endpoint();
                 next();
                 return;
             }
@@ -41,7 +44,8 @@ export class NoteController extends ControllerHandler {
         }
 
         if (success == -1) {
-            errors.addError(500, 'Internal server error').endpoint();
+            errors.addError(500, 'Internal server error');
+            errors.endpoint();
             next();
             return;
         }

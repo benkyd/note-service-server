@@ -42,7 +42,8 @@ export class LoginController extends ControllerHandler {
 
         const match = await User.Password.compare(password, user.password);
         if (!match) {
-            errors.addError(401, 'Unauthorized', 'Incorrect password for user').endpoint();
+            errors.addError(401, 'Unauthorized', 'Incorrect password for user');
+            errors.endpoint();
             next();
             return;
         }

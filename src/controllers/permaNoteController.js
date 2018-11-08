@@ -4,14 +4,14 @@ import {API} from './api/api';
 import {Database} from '../models/database/database'
 import {PermaLink} from '../models/permalinks/permalink';
 
-export class PermaLinkController extends ControllerHandler {
-    static async unauthentacatedPermaLink(req, res, next) {
+export class PermaNoteController extends ControllerHandler {
+    static async newPermaNote(req, res, next) {
         const errors = new API.errors(res);
-    
+
         const content = req.body.content || undefined;
         if (!content) {
-            errors.addError(422, 'Unprocessable entity', 'There is no text').endpoint();
-            next();
+            errors.addError(422, 'Unprocessable entity', 'There is no content');
+            errors.endpoint();
             return;
         }
 
@@ -20,8 +20,8 @@ export class PermaLinkController extends ControllerHandler {
 
         const success = await Database.PermaNotes.newNote(uid, endpoint, content);
         if (success == -1) {
-            errors.addError(500, 'Internal server error').endpoint();
-            next();
+            errors.addError(500, 'Internal server error');
+            errors.endpoint();
             return;
         }
 
@@ -29,17 +29,16 @@ export class PermaLinkController extends ControllerHandler {
         next();
     }
 
-    static async getNote(req, res, next) {
+    static async getPermaNote(req, res, next) {
         const endpoint = req.params.endpoint || undefined;
 
         if (!endpoint) {
-            next();
             return;
         }
 
         const data = await Database.PermaNotes.getNoteByEndpoint(endpoint);
         if (data == -1) {
-            next();
+            res.status(404).end('404 Not Found');
             return;
         }
 

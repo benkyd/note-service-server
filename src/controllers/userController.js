@@ -48,7 +48,8 @@ export class UserController extends ControllerHandler {
         const user = new User(id, username, encryptedPass, email, ip, 1234); // Authcode is placeholder for email authentication
         const success = await user.insert();
         if (success == -1) {
-            errors.addError(500, 'Internal server error').endpoint();
+            errors.addError(500, 'Internal server error');
+            errors.endpoint();
             next();
             return;
         }

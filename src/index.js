@@ -3,7 +3,7 @@ import {Config} from './config/config';
 import {Database} from './models/database/database';
 import {Server} from './server';
 import {Router} from './controllers/routes/router';
-import {MiddleWare} from './controllers/middleware';
+import {MiddleWare} from './controllers/middleware/middleware';
 
 init();
 async function init() {

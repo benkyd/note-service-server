@@ -1,6 +1,6 @@
 import {Logger} from '../../models/logger';
 import {Server} from '../../server';
-import {MiddleWare} from '../middleware/index';
+import {MiddleWare} from '../middleware/middleware';
 import {ErrorHandler} from '../middleware/errors/errorHandler';
 import {StatusCodes} from '../status';
 import {Controllers} from '../index';
@@ -20,8 +20,8 @@ export class Router {
         app.get('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
-        app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.unauthentacatedPermaLink]);
-        app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaLinkController.getNote]);
+        app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaNoteController.newPermaNote]);
+        app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaNoteController.getPermaNote]);
 
         app.post('/auth/note', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.NoteController.newNote]); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
         app.post('/auth/group', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.GroupController.newGroup]);

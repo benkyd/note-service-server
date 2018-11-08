@@ -1,5 +1,5 @@
 import {Logger} from '../../models/logger';
-import {MiddleWare} from './index';
+import {MiddleWare} from './middleware';
 
 let requestsPerSecond = 2;
 // let disposeTime = 20000; //ms 1800000 = 30 mins

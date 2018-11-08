@@ -1,4 +1,4 @@
-import {MiddleWare} from './index';
+import {MiddleWare} from './middleware';
 import {API} from '../api/api';
 import {Logger} from '../../models/logger'
 import {Auth} from '../../models/auth/authModel';
