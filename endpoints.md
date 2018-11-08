@@ -101,7 +101,7 @@ Expected response:
 Request body: 
 
     {
-        "text": textOfNote
+        "content": textOfNote
     }
 
 The request will be processed by the server if a text feild is present, then the server will store and generate an endpoint for the permalink.
