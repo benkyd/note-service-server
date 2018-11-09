@@ -14,7 +14,7 @@
     "jsonwebtoken": "^8.3.0",
     "regenerator-runtime": "^0.12.1",
     "sequelize": "^4.38.0",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.3"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",

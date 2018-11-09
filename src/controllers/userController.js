@@ -2,19 +2,19 @@ import bcrypt from 'bcrypt';
 
 import {Logger} from '../models/logger';
 import {ControllerHandler} from './controllerHandler';
-import {API} from '../models/api/api';
+import {API} from './api/api';
 import {Database} from '../models/database/database'
 import {User} from '../models/user/user';
 
 export class UserController extends ControllerHandler {
     static async newUser(req, res, next) {
-        let errors = new API.errors(res);
+        const errors = new API.errors(res);
 
         let ip = req.connection.remoteAddress;
         if (ip.startsWith('::ffff:')) ip = ip.substring(7);
 
-        let username = req.body.username || undefined;
-        let email = req.body.email || undefined;
+        const username = req.body.username || undefined;
+        const email = req.body.email || undefined;
         let password = req.body.password || undefined;
 
         if (!username || !email || !password) errors.addError(422, 'Unprocessaable entity', 'Missing username, email or password in body of request');
@@ -24,8 +24,8 @@ export class UserController extends ControllerHandler {
         if (!UserController.isPasswordValid(password)) errors.addError(422, 'Unprocessaable entity', 'Invalid password has spaces');
         if (password.length < 7) errors.addError(422, 'Unprocessaable entity', 'Invalid password less than 7 charicters');
 
-        if (await Database.users.getUser('username', username) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
-        if (await Database.users.getUser('email', email) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
+        if (await Database.Users.getUser('username', username) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
+        if (await Database.Users.getUser('email', email) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
 
         if (errors.count() > 0) {
             errors.endpoint();
@@ -33,22 +33,23 @@ export class UserController extends ControllerHandler {
             return;
         }
         
-        let response = new API.user(res, id, username, email, new Date().toLocaleString());
+        const response = new API.user(res, id, username, email, new Date().toLocaleString());
 
-        let encryptedPass = await User.Password.gen(password);
+        const encryptedPass = await User.Password.gen(password);
         password = null; // Cleaning password from memory
 
-        let status = response.getStatus;
+        const status = response.getStatus;
         
-        let id = new Date().getTime();
-        let token = await User.Token.gen(status, id, encryptedPass);
-        await Database.auth.newToken(id, token, encryptedPass);
+        const id = new Date().getTime();
+        const token = await User.Token.gen(status, id, encryptedPass);
+        await Database.Authorization.newToken(id, token, encryptedPass);
         response.Token = token;
 
-        let user = new User(id, username, encryptedPass, email, ip, 1234);
-        let success = await user.insert();
+        const user = new User(id, username, encryptedPass, email, ip, 1234); // Authcode is placeholder for email authentication
+        const success = await user.insert();
         if (success == -1) {
-            errors.addError(500, 'Internal server error').endpoint();
+            errors.addError(500, 'Internal server error');
+            errors.endpoint();
             next();
             return;
         }

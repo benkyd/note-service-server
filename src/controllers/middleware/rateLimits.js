@@ -1,5 +1,5 @@
 import {Logger} from '../../models/logger';
-import {MiddleWare} from './index';
+import {MiddleWare} from './middleware';
 
 let requestsPerSecond = 2;
 // let disposeTime = 20000; //ms 1800000 = 30 mins
@@ -7,7 +7,7 @@ let buckets = {}
 
 export class RateLimits extends MiddleWare {
     static async request(req, res, next) {
-        let ip = req.connection.remoteAddress;
+        const ip = req.connection.remoteAddress;
         MiddleWare.analytics(req, res, next);
 
         if (!buckets[ip]) {

@@ -8,7 +8,7 @@ export class NoteGroupTools extends BaseDatabase {
     }
 
     static async newGroup(id, creatorid, order) {
-        let Group = BaseDatabase.Group;
+        const Group = super.Group;
 
         try {
             let group = await Group.create({
@@ -25,7 +25,7 @@ export class NoteGroupTools extends BaseDatabase {
     }
 
     static async deleteGroup(id) {
-        let Group = BaseDatabase.Group;
+        const Group = super.Group;
 
         try {
             await Group.destroy({where: {id: id}});
@@ -37,7 +37,7 @@ export class NoteGroupTools extends BaseDatabase {
     }
 
     static async renameGroup(id, newName) {
-        let Group = BaseDatabase.Group;
+        const Group = super.Group;
 
         try {
             await Group.update({name: newName}, {where: {id: id}});
@@ -50,7 +50,7 @@ export class NoteGroupTools extends BaseDatabase {
     }
 
     static async reorderGroup(id, newPosition) {
-        let Group = BaseDatabase.Group;
+        const Group = super.Group;
 
         try {
             await Group.update({order: newPosition}, {where: {id: id}});
@@ -63,7 +63,7 @@ export class NoteGroupTools extends BaseDatabase {
     }
 
     static async getGroupByID(id) {
-        let Group = BaseDatabase.Group;
+        const Group = super.Group;
 
         try {
             let group = await Group.findOne({where: {id: id}});
@@ -76,7 +76,7 @@ export class NoteGroupTools extends BaseDatabase {
     }
 
     static async getAllUsersGroups(userid) {
-        let Group = BaseDatabase.Group;
+        const Group = super.Group;
 
         try {
             let group = Group.findAll({where: {creatorid: userid}});
@@ -89,7 +89,7 @@ export class NoteGroupTools extends BaseDatabase {
     }
 
     static async updateLastUpdatedTime(id) {
-        let Group = BaseDatabase.Group;
+        const Group = super.Group;
 
         try {
             await Group.update({lastupdated: new Date().getTime()}, {where: {id: id}});

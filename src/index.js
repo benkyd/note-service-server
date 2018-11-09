@@ -3,7 +3,7 @@ import {Config} from './config/config';
 import {Database} from './models/database/database';
 import {Server} from './server';
 import {Router} from './controllers/routes/router';
-import {MiddleWare} from './controllers/middleware';
+import {MiddleWare} from './controllers/middleware/middleware';
 
 init();
 async function init() {
@@ -24,7 +24,7 @@ async function init() {
     // Logger.debug(JSON.stringify(await Database.users.listAll(), null, 4));
     // await new User(1234135, 'plane000', 'adifl', 'playsplane@gmail.com', '127.0.0.1', new Date().getTime(), false, 'SGASGD', -1).insert();
 
-    Logger.debug(JSON.stringify(await Database.note.listAll(), null, 4));;
+    Logger.debug(JSON.stringify(await Database.Notes.listAll(), null, 4));;
 
     // Logger.database('Database Log');
     // Logger.middleware('GET request to /');

@@ -6,7 +6,7 @@ import {Config} from './config/config';
 
 let app;
 let server;
-let router
+let router;
 
 export class Server {
     static get App() {return app} 

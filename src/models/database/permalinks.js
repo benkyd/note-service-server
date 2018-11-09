@@ -5,16 +5,16 @@ import {Logger} from '../logger';
 
 export class PermaLinkTools extends BaseDatabase {
     static async listAll() {
-        let PermaNote = BaseDatabase.PermaNote;
+        const PermaNote = super.PermaNote;
         return PermaNote.findAll();
     }
 
     static async newNote(uid, endpoint, text, id) {
-        let PermaNote = BaseDatabase.PermaNote;
+        const PermaNote = super.PermaNote;
 
         try {
             let note = await PermaNote.create({
-                id: id,
+                id: uid,
                 endpoint: endpoint,
                 text: text,
                 creatorid: id
@@ -27,7 +27,7 @@ export class PermaLinkTools extends BaseDatabase {
     }
 
     static async getNoteByUID(id) {
-        let PermaNote = BaseDatabase.PermaNote;
+        const PermaNote = super.PermaNote;
 
         try {
             let note = await PermaNote.findOne({where: {id: id}});
@@ -40,7 +40,7 @@ export class PermaLinkTools extends BaseDatabase {
     }
 
     static async getNoteByEndpoint(endpoint) {
-        let PermaNote = BaseDatabase.PermaNote;
+        const PermaNote = super.PermaNote;
 
         try {
             let note = await PermaNote.findOne({where: {endpoint: endpoint}});
