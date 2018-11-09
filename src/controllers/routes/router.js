@@ -35,8 +35,9 @@ export class Router {
         app.delete('/auth/deletenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/deletegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
 
-        app.use(ErrorHandler.newError);
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
+        app.use(ErrorHandler.newError);
+        
         Logger.info('HTTP endpoints settup');
     }
 
