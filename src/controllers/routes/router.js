@@ -42,6 +42,8 @@ export class Router {
     }
 
     static frontPage(req, res, next) {
+        // const err = "lol";
+        // next(err);
         res.end('DEVELOPMENT SERVER');
     }
 }

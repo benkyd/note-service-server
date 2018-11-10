@@ -11,8 +11,9 @@ export class RateLimits extends MiddleWare {
         MiddleWare.analytics(req, res, next);
 
         if (!buckets[ip]) {
-            Logger.debug(`New rate limiting bucket`);
+            Logger.debug(`New rate limiting bucket for ${ip}`);
             RateLimits.newBucket(ip);
+            next();
             return;
         }
 
@@ -25,6 +26,7 @@ export class RateLimits extends MiddleWare {
         }
 
         buckets[ip].tokens.pop();
+        next();
     }
 
     static newBucket(ip) {
