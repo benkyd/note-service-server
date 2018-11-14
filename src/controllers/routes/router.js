@@ -19,29 +19,29 @@ export class Router {
         app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate]);
         app.get('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
-
+        
         app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaNoteController.newPermaNote]);
         app.get('/note/:endpoint', [MiddleWare.RateLimits.request, Controllers.PermaNoteController.getPermaNote]);
-
+        
         app.post('/auth/note', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.NoteController.newNote]); // Passes through auth middleware which if authenticated passes user obj and token to the note handling function for it to deal with
         app.post('/auth/group', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser, Controllers.GroupController.newGroup]);
-
+        
         app.get('/auth/getallnotes', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.get('/auth/getallgroups', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
-
+        
         app.post('/auth/movenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.post('/auth/movegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
-
+        
         app.delete('/auth/deletenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/deletegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
-
-        app.use(ErrorHandler.newError);
+        
         app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
+        app.use(ErrorHandler.newError);
         
         Logger.info('HTTP endpoints settup');
     }
 
-    static frontPage(req, res, next) {
+    static async frontPage(req, res, next) {
         // const err = "lol";
         // next(err);
         res.end('DEVELOPMENT SERVER');

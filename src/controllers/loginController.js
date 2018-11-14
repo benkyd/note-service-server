@@ -48,7 +48,7 @@ export class LoginController extends ControllerHandler {
             return;
         }
 
-        const response = new API.user(res, user.id, username, email, new Date(parseInt(user.lastupdated)).toLocaleString());
+        let response = new API.user(res, user.id, username, email, new Date(parseInt(user.lastupdated)).toLocaleString());
         let token = await Database.Authorization.getTokenByID(user.id);
         
         if (token == -1) {

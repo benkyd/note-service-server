@@ -8,14 +8,16 @@ export class AuthMiddleWare extends MiddleWare {
         const errors = new API.errors(res);
 
         if (!req.headers.authorization) {
-            errors.addError(403, 'Forbidden', 'You cannot access this resource without authorization').endpoint();
+            errors.addError(403, 'Forbidden', 'You cannot access this resource without authorization');
+            next(errors);
             return;
         }
          
         const token = req.headers.authorization;
         const user = await Auth.getUserFromToken(token);
-        if (user == -1) {
-            errors.addError(403, 'Forbidden', 'You cannot access this resource without authorization').endpoint();
+        if (user == -1 || !user.id) {
+            errors.addError(403, 'Forbidden', 'You cannot access this resource without authorization');
+            next(errors);
             return;
         }
         
