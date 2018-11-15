@@ -28,6 +28,8 @@ export class PermaLinkAPI extends API {
     }
 
     endpoint() {
-        this.res.status(201).end(JSON.stringify(this.response, false, 4));
+        this.res
+            .status(201)
+            .end(JSON.stringify(this.response, false, 4));
     }
 }

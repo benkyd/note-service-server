@@ -11,8 +11,7 @@ export class PermaNoteController extends ControllerHandler {
         const content = req.body.content || undefined;
         if (!content) {
             errors.addError(422, 'Unprocessable entity', 'There is no content');
-            errors.endpoint();
-            return;
+            return next(errors);
         }
 
         const uid = await PermaLink.genUID() || new Date().getTime();
@@ -21,8 +20,7 @@ export class PermaNoteController extends ControllerHandler {
         const success = await Database.PermaNotes.newNote(uid, endpoint, content);
         if (success == -1) {
             errors.addError(500, 'Internal server error');
-            errors.endpoint();
-            return;
+            return next(errors);
         }
 
         new API.permalink(res, content, uid, endpoint).endpoint();
@@ -32,9 +30,7 @@ export class PermaNoteController extends ControllerHandler {
     static async getPermaNote(req, res, next) {
         const endpoint = req.params.endpoint || undefined;
 
-        if (!endpoint) {
-            return;
-        }
+        if (!endpoint) return;
 
         const data = await Database.PermaNotes.getNoteByEndpoint(endpoint);
         if (data == -1) {

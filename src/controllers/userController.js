@@ -27,11 +27,7 @@ export class UserController extends ControllerHandler {
         if (await Database.Users.getUser('username', username) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that username allready exists');
         if (await Database.Users.getUser('email', email) != -1) errors.addError(422, 'Unprocessable entity', 'A user with that email allready exists');
 
-        if (errors.count() > 0) {
-            errors.endpoint();
-            next();
-            return;
-        }
+        if (errors.count() > 0) return next(errors);
         
         const response = new API.user(res, id, username, email, new Date().toLocaleString());
 
@@ -49,9 +45,7 @@ export class UserController extends ControllerHandler {
         const success = await user.insert();
         if (success == -1) {
             errors.addError(500, 'Internal server error');
-            errors.endpoint();
-            next();
-            return;
+            return next(errors);
         }
 
         response.endpoint();

@@ -43,6 +43,8 @@ export class UserAPI extends API {
     }
 
     endpoint() {
-        this.res.status(200).end(JSON.stringify(this.response, false, 4));
+        this.res
+            .status(200)
+            .end(JSON.stringify(this.response, false, 4));
     }
 }

@@ -17,7 +17,7 @@ export class Router {
         
         app.post('/user', [MiddleWare.RateLimits.request, Controllers.UserController.newUser]);
         app.post('/login', [MiddleWare.RateLimits.request, Controllers.LoginController.authenticate]);
-        app.get('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
+        app.get('/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/user/:id', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         
         app.post('/unauth/permanote', [MiddleWare.RateLimits.request, Controllers.PermaNoteController.newPermaNote]);
@@ -35,8 +35,10 @@ export class Router {
         app.delete('/auth/deletenote', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         app.delete('/auth/deletegroup', [MiddleWare.RateLimits.request, MiddleWare.Auth.authUser]);
         
-        app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         app.use(ErrorHandler.newError);
+        app.get('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
+        app.post('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
+        app.delete('*', [MiddleWare.RateLimits.request, StatusCodes.pageNotFound]);
         
         Logger.info('HTTP endpoints settup');
     }

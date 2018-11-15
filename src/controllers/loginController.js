@@ -2,6 +2,7 @@ import {ControllerHandler} from './controllerHandler';
 import {API} from './api/api';
 import {Database} from '../models/database/database'
 import {User} from '../models/user/user';
+import { Logger } from '../models/logger';
 
 export class LoginController extends ControllerHandler {
     static async authenticate(req, res, next) {
@@ -17,11 +18,7 @@ export class LoginController extends ControllerHandler {
         if (!password) errors.addError(400, 'Bad request', 'A password is required');
         if (!username && !email) errors.addError(400, 'Bad request', 'A username or email is required');
 
-        if (errors.count() > 0) {
-            errors.endpoint();
-            next();
-            return;
-        }
+        if (errors.count() > 0) return next(errors);
 
         let user;
         if (!username /*If they're loging in with email*/) {
@@ -34,18 +31,12 @@ export class LoginController extends ControllerHandler {
             email = user.email;
         }
 
-        if (errors.count() > 0) {
-            errors.endpoint();
-            next();
-            return;
-        }
+        if (errors.count() > 0) return next(errors);
 
         const match = await User.Password.compare(password, user.password);
         if (!match) {
             errors.addError(401, 'Unauthorized', 'Incorrect password for user');
-            errors.endpoint();
-            next();
-            return;
+            return next(errors);
         }
 
         let response = new API.user(res, user.id, username, email, new Date(parseInt(user.lastupdated)).toLocaleString());
