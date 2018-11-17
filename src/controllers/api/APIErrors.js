@@ -30,6 +30,6 @@ export class APIErrors extends API {
     endpoint() {
         this.res
             .status(this.errors.status.code)
-            .end(JSON.stringify(this.errors, false, 4));
+            .send(JSON.stringify(this.errors, false, 4));
     }
 }

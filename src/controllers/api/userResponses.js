@@ -42,9 +42,9 @@ export class UserAPI extends API {
         }
     }
 
-    endpoint() {
-        this.res
+    async endpoint() {
+        await this.res
             .status(200)
-            .end(JSON.stringify(this.response, false, 4));
+            .send(JSON.stringify(this.response, false, 4));
     }
 }

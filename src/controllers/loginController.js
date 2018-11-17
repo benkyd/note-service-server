@@ -51,7 +51,7 @@ export class LoginController extends ControllerHandler {
         } 
         response.Token = token.token;
         
-        response.endpoint();
+        await response.endpoint();
         next();
     }
 }
